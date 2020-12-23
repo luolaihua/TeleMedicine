@@ -48,9 +48,11 @@ OBJECTS_DIR   = release
 ####### Files
 
 SOURCES       = main.cpp \
-		mainwindow.cpp release\moc_mainwindow.cpp
+		mainwindow.cpp release\qrc_res.cpp \
+		release\moc_mainwindow.cpp
 OBJECTS       = release/main.o \
 		release/mainwindow.o \
+		release/qrc_res.o \
 		release/moc_mainwindow.o
 
 DIST          =  mainwindow.h main.cpp \
@@ -74,10 +76,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) Telemedicine.zip $(SOURCES) $(DIST) Telemedicine.pro ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\spec_pre.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\qdevice.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\device_config.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\common\sanitize.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\common\gcc-base.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\common\g++-base.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\common\angle.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\common\windows-vulkan.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\common\g++-win32.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\common\windows-desktop.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\qconfig.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3drender.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_axbase.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_axserver.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_bodymovin_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_charts.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_core.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_core_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_dbus.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_designer.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_gui.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_help.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_help_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_location.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_location_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_network.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_network_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_nfc.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_opengl.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_positioning.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_qml.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quick.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_repparser.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_scxml.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_sensors.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_serialport.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_sql.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_svg.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_testlib.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_uitools.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_websockets.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_widgets.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_winextras.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_xml.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\qt_functions.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\qt_config.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\win32-g++\qmake.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\exclusive_builds.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\toolchain.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\default_pre.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\win32\default_pre.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\resolve_config.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\exclusive_builds_post.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\default_post.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\build_pass.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\qml_debug.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\precompile_header.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\warn_on.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\qt.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\resources.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\moc.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\win32\opengl.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\uic.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\qmake_use.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\file_copies.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\win32\windows.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\testcase_targets.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\exceptions.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\yacc.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\lex.prf Telemedicine.pro ..\..\myQT\5.13.2\mingw73_64\lib\Qt5Widgets.prl ..\..\myQT\5.13.2\mingw73_64\lib\Qt5Gui.prl ..\..\myQT\5.13.2\mingw73_64\lib\Qt5Sql.prl ..\..\myQT\5.13.2\mingw73_64\lib\Qt5Core.prl ..\..\myQT\5.13.2\mingw73_64\lib\qtmain.prl    ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\data\dummy.cpp mainwindow.h  main.cpp mainwindow.cpp mainwindow.ui    
+	$(ZIP) Telemedicine.zip $(SOURCES) $(DIST) Telemedicine.pro ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\spec_pre.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\qdevice.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\device_config.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\common\sanitize.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\common\gcc-base.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\common\g++-base.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\common\angle.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\common\windows-vulkan.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\common\g++-win32.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\common\windows-desktop.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\qconfig.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3drender.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_axbase.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_axserver.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_bodymovin_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_charts.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_core.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_core_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_dbus.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_designer.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_gui.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_help.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_help_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_location.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_location_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_network.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_network_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_nfc.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_opengl.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_positioning.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_qml.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quick.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_repparser.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_scxml.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_sensors.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_serialport.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_sql.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_svg.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_testlib.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_uitools.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_websockets.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_widgets.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_winextras.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_xml.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\qt_functions.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\qt_config.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\win32-g++\qmake.conf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\exclusive_builds.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\toolchain.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\default_pre.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\win32\default_pre.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\resolve_config.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\exclusive_builds_post.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\default_post.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\build_pass.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\qml_debug.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\precompile_header.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\warn_on.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\qt.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\resources.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\moc.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\win32\opengl.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\uic.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\qmake_use.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\file_copies.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\win32\windows.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\testcase_targets.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\exceptions.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\yacc.prf ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\lex.prf Telemedicine.pro res.qrc ..\..\myQT\5.13.2\mingw73_64\lib\Qt5Widgets.prl ..\..\myQT\5.13.2\mingw73_64\lib\Qt5Gui.prl ..\..\myQT\5.13.2\mingw73_64\lib\Qt5Sql.prl ..\..\myQT\5.13.2\mingw73_64\lib\Qt5Core.prl ..\..\myQT\5.13.2\mingw73_64\lib\qtmain.prl   res.qrc ..\..\myQT\5.13.2\mingw73_64\mkspecs\features\data\dummy.cpp mainwindow.h  main.cpp mainwindow.cpp mainwindow.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.o release\mainwindow.o release\moc_mainwindow.o
+	-$(DEL_FILE) release\main.o release\mainwindow.o release\qrc_res.o release\moc_mainwindow.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -94,8 +96,14 @@ benchmark: first
 
 compiler_no_pch_compiler_make_all:
 compiler_no_pch_compiler_clean:
-compiler_rcc_make_all:
+compiler_rcc_make_all: release/qrc_res.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) release\qrc_res.cpp
+release/qrc_res.cpp: res.qrc \
+		../../myQT/5.13.2/mingw73_64/bin/rcc.exe \
+		CT.jpg
+	D:\myQT\5.13.2\mingw73_64\bin\rcc.exe -name res res.qrc -o release\qrc_res.cpp
+
 compiler_moc_predefs_make_all: release/moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) release\moc_predefs.h
@@ -212,6 +220,122 @@ release/moc_mainwindow.cpp: mainwindow.h \
 		../../myQT/5.13.2/mingw73_64/include/QtGui/qtouchdevice.h \
 		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qtabwidget.h \
 		../../myQT/5.13.2/mingw73_64/include/QtGui/qicon.h \
+		../../opencv_4.5.0-build/install/include/opencv2/opencv.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/opencv_modules.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cvdef.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/hal/interface.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cv_cpu_dispatch.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cv_cpu_helper.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/hal/msa_macros.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/fast_math.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/version.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/base.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cvstd.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cvstd_wrapper.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/neon_utils.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/vsx_utils.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/check.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/traits.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/matx.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/saturate.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/types.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/mat.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/bufferpool.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/mat.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/persistence.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/operations.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cvstd.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/utility.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/utils/instrumentation.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/utils/tls.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/optim.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/ovx.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/calib3d.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/features2d.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/miniflann.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/defines.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/config.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/affine.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/dnn.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/async.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/version.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/dict.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/layer.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/dnn.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/utils/inference_engine.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/flann_base.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/general.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/matrix.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/params.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/any.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/saving.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/nn_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/result_set.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/all_indices.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/kdtree_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/dynamic_bitset.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/dist.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/heap.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/allocator.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/random.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/kdtree_single_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/kmeans_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/logger.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/composite_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/linear_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/hierarchical_clustering_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/lsh_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/lsh_table.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/autotuned_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/ground_truth.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/index_testing.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/timer.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/sampling.h \
+		../../opencv_4.5.0-build/install/include/opencv2/highgui.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/imgcodecs.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/videoio.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/imgproc.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/ml.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/ml/ml.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/objdetect.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/objdetect/detection_based_tracker.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/photo.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/warpers.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/warpers.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cuda.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cuda_types.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cuda.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/warpers_inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/matchers.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/motion_estimators.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/util.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/util_inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/camera.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/exposure_compensate.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/seam_finders.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/blenders.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/video.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/video/tracking.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/video/background_segm.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/highgui/highgui.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/imgproc/imgproc.hpp \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/QSqlTableModel \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qsqltablemodel.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qtsqlglobal.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qtsql-config.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qsqldatabase.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qsqlquerymodel.h \
+		../../myQT/5.13.2/mingw73_64/include/QtCore/qabstractitemmodel.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/QSqlDatabase \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/QSqlQuery \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qsqlquery.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QMessageBox \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qmessagebox.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qdialog.h \
 		release/moc_predefs.h \
 		../../myQT/5.13.2/mingw73_64/bin/moc.exe
 	D:\myQT\5.13.2\mingw73_64\bin\moc.exe $(DEFINES) --include D:/QtProject/Telemedicine/release/moc_predefs.h -ID:/myQT/5.13.2/mingw73_64/mkspecs/win32-g++ -ID:/QtProject/Telemedicine -ID:/opencv_4.5.0-build/install/include -ID:/myQT/5.13.2/mingw73_64/include -ID:/myQT/5.13.2/mingw73_64/include/QtWidgets -ID:/myQT/5.13.2/mingw73_64/include/QtGui -ID:/myQT/5.13.2/mingw73_64/include/QtANGLE -ID:/myQT/5.13.2/mingw73_64/include/QtSql -ID:/myQT/5.13.2/mingw73_64/include/QtCore -ID:/myQT/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/myQT/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/myQT/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/myQT/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/myQT/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/myQT/Tools/mingw730_64/x86_64-w64-mingw32/include mainwindow.h -o release\moc_mainwindow.cpp
@@ -233,7 +357,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 
 
@@ -346,13 +470,131 @@ release/main.o: main.cpp mainwindow.h \
 		../../myQT/5.13.2/mingw73_64/include/QtGui/qtouchdevice.h \
 		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qtabwidget.h \
 		../../myQT/5.13.2/mingw73_64/include/QtGui/qicon.h \
+		../../opencv_4.5.0-build/install/include/opencv2/opencv.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/opencv_modules.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cvdef.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/hal/interface.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cv_cpu_dispatch.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cv_cpu_helper.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/hal/msa_macros.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/fast_math.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/version.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/base.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cvstd.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cvstd_wrapper.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/neon_utils.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/vsx_utils.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/check.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/traits.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/matx.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/saturate.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/types.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/mat.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/bufferpool.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/mat.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/persistence.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/operations.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cvstd.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/utility.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/utils/instrumentation.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/utils/tls.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/optim.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/ovx.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/calib3d.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/features2d.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/miniflann.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/defines.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/config.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/affine.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/dnn.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/async.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/version.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/dict.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/layer.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/dnn.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/utils/inference_engine.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/flann_base.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/general.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/matrix.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/params.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/any.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/saving.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/nn_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/result_set.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/all_indices.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/kdtree_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/dynamic_bitset.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/dist.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/heap.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/allocator.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/random.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/kdtree_single_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/kmeans_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/logger.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/composite_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/linear_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/hierarchical_clustering_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/lsh_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/lsh_table.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/autotuned_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/ground_truth.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/index_testing.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/timer.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/sampling.h \
+		../../opencv_4.5.0-build/install/include/opencv2/highgui.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/imgcodecs.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/videoio.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/imgproc.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/ml.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/ml/ml.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/objdetect.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/objdetect/detection_based_tracker.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/photo.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/warpers.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/warpers.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cuda.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cuda_types.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cuda.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/warpers_inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/matchers.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/motion_estimators.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/util.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/util_inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/camera.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/exposure_compensate.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/seam_finders.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/blenders.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/video.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/video/tracking.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/video/background_segm.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/highgui/highgui.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/imgproc/imgproc.hpp \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/QSqlTableModel \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qsqltablemodel.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qtsqlglobal.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qtsql-config.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qsqldatabase.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qsqlquerymodel.h \
+		../../myQT/5.13.2/mingw73_64/include/QtCore/qabstractitemmodel.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/QSqlDatabase \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/QSqlQuery \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qsqlquery.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QMessageBox \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qmessagebox.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qdialog.h \
 		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QApplication \
 		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qapplication.h \
 		../../myQT/5.13.2/mingw73_64/include/QtCore/qcoreapplication.h \
 		../../myQT/5.13.2/mingw73_64/include/QtCore/qeventloop.h \
 		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
 		../../myQT/5.13.2/mingw73_64/include/QtGui/qguiapplication.h \
-		../../myQT/5.13.2/mingw73_64/include/QtGui/qinputmethod.h
+		../../myQT/5.13.2/mingw73_64/include/QtGui/qinputmethod.h \
+		../../myQT/5.13.2/mingw73_64/include/QtCore/QProcess \
+		../../myQT/5.13.2/mingw73_64/include/QtCore/qprocess.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o main.cpp
 
 release/mainwindow.o: mainwindow.cpp mainwindow.h \
@@ -462,8 +704,194 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../myQT/5.13.2/mingw73_64/include/QtGui/qtouchdevice.h \
 		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qtabwidget.h \
 		../../myQT/5.13.2/mingw73_64/include/QtGui/qicon.h \
-		ui_mainwindow.h
+		../../opencv_4.5.0-build/install/include/opencv2/opencv.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/opencv_modules.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cvdef.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/hal/interface.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cv_cpu_dispatch.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cv_cpu_helper.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/hal/msa_macros.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/fast_math.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/version.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/base.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cvstd.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cvstd_wrapper.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/neon_utils.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/vsx_utils.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/check.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/traits.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/matx.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/saturate.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/types.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/mat.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/bufferpool.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/mat.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/persistence.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/operations.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cvstd.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/utility.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/utils/instrumentation.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/utils/tls.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/optim.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/ovx.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/calib3d.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/features2d.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/miniflann.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/defines.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/config.h \
+		../../opencv_4.5.0-build/install/include/opencv2/core/affine.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/dnn.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/async.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/version.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/dict.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/layer.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/dnn.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/dnn/utils/inference_engine.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/flann_base.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/general.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/matrix.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/params.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/any.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/saving.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/nn_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/result_set.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/all_indices.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/kdtree_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/dynamic_bitset.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/dist.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/heap.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/allocator.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/random.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/kdtree_single_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/kmeans_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/logger.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/composite_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/linear_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/hierarchical_clustering_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/lsh_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/lsh_table.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/autotuned_index.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/ground_truth.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/index_testing.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/timer.h \
+		../../opencv_4.5.0-build/install/include/opencv2/flann/sampling.h \
+		../../opencv_4.5.0-build/install/include/opencv2/highgui.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/imgcodecs.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/videoio.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/imgproc.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/ml.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/ml/ml.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/objdetect.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/objdetect/detection_based_tracker.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/photo.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/warpers.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/warpers.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cuda.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cuda_types.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/core/cuda.inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/warpers_inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/matchers.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/motion_estimators.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/util.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/util_inl.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/camera.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/exposure_compensate.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/seam_finders.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/stitching/detail/blenders.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/video.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/video/tracking.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/video/background_segm.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/highgui/highgui.hpp \
+		../../opencv_4.5.0-build/install/include/opencv2/imgproc/imgproc.hpp \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/QSqlTableModel \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qsqltablemodel.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qtsqlglobal.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qtsql-config.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qsqldatabase.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qsqlquerymodel.h \
+		../../myQT/5.13.2/mingw73_64/include/QtCore/qabstractitemmodel.h \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/QSqlDatabase \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/QSqlQuery \
+		../../myQT/5.13.2/mingw73_64/include/QtSql/qsqlquery.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QMessageBox \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qmessagebox.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qdialog.h \
+		ui_mainwindow.h \
+		../../myQT/5.13.2/mingw73_64/include/QtCore/QVariant \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QApplication \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qapplication.h \
+		../../myQT/5.13.2/mingw73_64/include/QtCore/qcoreapplication.h \
+		../../myQT/5.13.2/mingw73_64/include/QtCore/qeventloop.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
+		../../myQT/5.13.2/mingw73_64/include/QtGui/qguiapplication.h \
+		../../myQT/5.13.2/mingw73_64/include/QtGui/qinputmethod.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QComboBox \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qcombobox.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qstyleoption.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qabstractspinbox.h \
+		../../myQT/5.13.2/mingw73_64/include/QtGui/qvalidator.h \
+		../../myQT/5.13.2/mingw73_64/include/QtCore/qregularexpression.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qslider.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qabstractslider.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qstyle.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qtabbar.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qrubberband.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qframe.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QHeaderView \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qheaderview.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qabstractitemview.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qabstractscrollarea.h \
+		../../myQT/5.13.2/mingw73_64/include/QtCore/qitemselectionmodel.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QLCDNumber \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qlcdnumber.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QLabel \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qlabel.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QLineEdit \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qlineedit.h \
+		../../myQT/5.13.2/mingw73_64/include/QtGui/qtextcursor.h \
+		../../myQT/5.13.2/mingw73_64/include/QtGui/qtextformat.h \
+		../../myQT/5.13.2/mingw73_64/include/QtGui/qpen.h \
+		../../myQT/5.13.2/mingw73_64/include/QtGui/qtextoption.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QMenuBar \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qmenubar.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qmenu.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qaction.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qactiongroup.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QProgressBar \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qprogressbar.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QPushButton \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qpushbutton.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QRadioButton \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qradiobutton.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QSlider \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QSpinBox \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qspinbox.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QStatusBar \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qstatusbar.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QTabWidget \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QTableView \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qtableview.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QTextEdit \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qtextedit.h \
+		../../myQT/5.13.2/mingw73_64/include/QtGui/qtextdocument.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QTimeEdit \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qdatetimeedit.h \
+		../../myQT/5.13.2/mingw73_64/include/QtCore/qdatetime.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QTreeWidget \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qtreewidget.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qtreeview.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/qtreewidgetitemiterator.h \
+		../../myQT/5.13.2/mingw73_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o mainwindow.cpp
+
+release/qrc_res.o: release/qrc_res.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\qrc_res.o release\qrc_res.cpp
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_mainwindow.o release\moc_mainwindow.cpp

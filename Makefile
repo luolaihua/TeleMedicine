@@ -222,6 +222,7 @@ Makefile: Telemedicine.pro ../../myQT/5.13.2/mingw73_64/mkspecs/win32-g++/qmake.
 		../../myQT/5.13.2/mingw73_64/mkspecs/features/qt_config.prf \
 		../../myQT/5.13.2/mingw73_64/mkspecs/win32-g++/qmake.conf \
 		../../myQT/5.13.2/mingw73_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../myQT/5.13.2/mingw73_64/mkspecs/features/exclusive_builds.prf \
 		../../myQT/5.13.2/mingw73_64/mkspecs/features/toolchain.prf \
 		../../myQT/5.13.2/mingw73_64/mkspecs/features/default_pre.prf \
@@ -410,6 +411,7 @@ Makefile: Telemedicine.pro ../../myQT/5.13.2/mingw73_64/mkspecs/win32-g++/qmake.
 ../../myQT/5.13.2/mingw73_64/mkspecs/features/qt_config.prf:
 ../../myQT/5.13.2/mingw73_64/mkspecs/win32-g++/qmake.conf:
 ../../myQT/5.13.2/mingw73_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../myQT/5.13.2/mingw73_64/mkspecs/features/exclusive_builds.prf:
 ../../myQT/5.13.2/mingw73_64/mkspecs/features/toolchain.prf:
 ../../myQT/5.13.2/mingw73_64/mkspecs/features/default_pre.prf:
