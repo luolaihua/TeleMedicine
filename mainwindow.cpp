@@ -3,11 +3,17 @@
 #include <QBuffer>
 #include<QFileDialog>
 #include<QDebug>
+#include<QMouseEvent>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    //使用了列表初始化，三种情况必须要用：常成员，引用类型 成员，无默认构造函数的类成员对象。
+    ,hough_dp(2),hough_minDist(100),hough_param1(100),hough_param2(100)
 {
     ui->setupUi(this);
+    setCentralWidget (ui->centralwidget);
+
+
     initMainWindow ();
     //基本视图信息；
     model = new QSqlTableModel(this);
@@ -54,6 +60,14 @@ void MainWindow::initMainWindow()
     myTimer->start ();
     //绑定消息槽函数
     connect (myTimer,&QTimer::timeout ,this,&MainWindow::onTimeOut );
+    connect (ui->actionStart,&QAction::triggered ,this,&MainWindow::on_pushButton_clicked );
+
+    inputDlg = new InputDialog(this);
+    connect (ui->actionparamSet,&QAction::triggered ,this,&MainWindow::slot_getParams);
+    connect (ui->actionresetCT,&QAction::triggered ,this,&MainWindow::slot_resetCT );
+
+    //给CT照片的label安装事件过滤器
+    ui->CT_Img_Label->installEventFilter (this);
 }
 
 /**
@@ -75,25 +89,25 @@ void MainWindow::ctImgRead()
 
 void MainWindow::ctImgProc()
 {
-//    QTime time;
-//    time.start ();
-//    ui->progressBar->setValue (19);
-//    while(time.elapsed ()<1000)
-//    {
-//        QCoreApplication::processEvents ();
-//    }
+    //    QTime time;
+    //    time.start ();
+    //    ui->progressBar->setValue (19);
+    //    while(time.elapsed ()<1000)
+    //    {
+    //        QCoreApplication::processEvents ();
+    //    }
     ctImgHoughCircles();//霍夫圆算法处理
-//    while(time.elapsed ()<1000)
-//    {
-//        QCoreApplication::processEvents ();
-//    }
+    //    while(time.elapsed ()<1000)
+    //    {
+    //        QCoreApplication::processEvents ();
+    //    }
     //ui->progressBar->setValue (ui->progressBar->value ()+20);
     ctImgShow ();//显示处理后的CT相片
-//    while(time.elapsed ()<1000)
-//    {
-//        QCoreApplication::processEvents ();
-//    }
-   // ui->progressBar->setValue (ui->progressBar->maximum ());
+    //    while(time.elapsed ()<1000)
+    //    {
+    //        QCoreApplication::processEvents ();
+    //    }
+    // ui->progressBar->setValue (ui->progressBar->maximum ());
     //QMessageBox::information (this,tr("完毕"),tr("子宫内壁见椭球形阴影，疑似子宫肌瘤"));
 
 }
@@ -174,19 +188,21 @@ void MainWindow::ctImgHoughCircles()
     cvtColor (ctGrayImg,ctColorImg,COLOR_GRAY2BGR);
     GaussianBlur (ctGrayImg,ctGrayImg,Size(9,9),2,2);//对图像做高斯模糊，平滑处理
     vector<Vec3f> h_circles;//用向量数组存储病灶区圆圈
-    int dp = ui->dp->text ().toInt ();
-    int minDist = ui->minDist->text ().toInt ();
-    int param1 = ui->param1->text ().toInt ();
-    int param2 = ui->param2->text ().toInt ();
+
+    int dp = hough_dp > 0 ? hough_dp:2;
+    int minDist = hough_minDist > 0 ? hough_minDist:100;
+    int param1 = hough_param1 > 0 ? hough_param1:100;
+    int param2 = hough_param2 > 0 ? hough_param2:100;
+
     HoughCircles (ctGrayImg,h_circles,HOUGH_GRADIENT,dp,minDist,param1,param2);
-//    int processValue = 45;
-//    ui->progressBar->setValue (processValue);
-//    QTime time;
-//    time.start ();
-//    while(time.elapsed ()<1000)
-//    {
-//        QCoreApplication::processEvents ();
-//    }
+    //    int processValue = 45;
+    //    ui->progressBar->setValue (processValue);
+    //    QTime time;
+    //    time.start ();
+    //    while(time.elapsed ()<1000)
+    //    {
+    //        QCoreApplication::processEvents ();
+    //    }
     qDebug() << h_circles.size();
     for(size_t i=0;i<h_circles.size();i++)
     {
@@ -195,32 +211,57 @@ void MainWindow::ctImgHoughCircles()
         circle(ctColorImg, Point(h_circles[i][0], h_circles[i][1]), h_circles[i][2], Scalar(0, 0, 255), 2);
         circle (ctColorImg,center,h_radius,Scalar(238,0,238),3,8,0);
         circle (ctColorImg,center,3,Scalar(238,0,0),-1,8,0);
-//        processValue++;
-//        ui->progressBar->setValue (processValue);
+        //        processValue++;
+        //        ui->progressBar->setValue (processValue);
     }
-    myCtImg = ctColorImg;
-    myCtQImage = QImage(myCtImg.data,myCtImg.cols,myCtImg.rows,QImage::Format_RGB888);
+    myProCtImg = ctColorImg;
+    myCtQImage = QImage(myProCtImg.data,myProCtImg.cols,myProCtImg.rows,QImage::Format_RGB888);
 
+}
+
+/**
+ * @brief 过滤出CT_Img_Label的双击事件
+ * @param watched 被安装过滤器的对象，可能不止一个
+ * @param event 处理它的事件
+ * @return
+ */
+//处理步骤：先找到相应的对象，在找到相应的事件
+bool MainWindow::eventFilter(QObject *watched, QEvent *event)
+{
+    //过滤出CT_Img_Label对象
+    if(watched == ui->CT_Img_Label)
+    {
+        //判断是否是双击事件
+        if(event->type () == QEvent::MouseButtonDblClick)
+        {
+            //可以将QEvent转成QMouseEvent
+            //QMouseEvent *mouseE = static_cast<QMouseEvent*>(event);
+            //qDebug() << "MouseButtonDblClick";
+            imshow ("CT",myCtImg);
+        }
+    }else{
+        //将其他事件交给父类
+        return QMainWindow::eventFilter (watched,event);
+    }
 }
 
 
 void MainWindow::on_pushButton_clicked()
 {
-    if(ui->checkBox->isChecked ()) ctImgRead ();
 
-//    QTime time;
-//    time.start ();
-//    ui->progressBar->setMaximum (0);
-//    ui->progressBar->setMinimum (0);
-//    while(time.elapsed ()<5000)
-//    {
-//        QCoreApplication::processEvents ();//处理事件以保持界面刷新
-//    }
-//    ui->progressBar->setMaximum (100);
-//    ui->progressBar->setMinimum (0);
+    //    QTime time;
+    //    time.start ();
+    //    ui->progressBar->setMaximum (0);
+    //    ui->progressBar->setMinimum (0);
+    //    while(time.elapsed ()<5000)
+    //    {
+    //        QCoreApplication::processEvents ();//处理事件以保持界面刷新
+    //    }
+    //    ui->progressBar->setMaximum (100);
+    //    ui->progressBar->setMinimum (0);
     ctImgProc ();
-   // ui->progressBar->setValue (0);
-   // ctImgSave();
+    // ui->progressBar->setValue (0);
+    // ctImgSave();
 }
 
 void MainWindow::on_basicTableView_clicked(const QModelIndex &index)
@@ -253,4 +294,35 @@ void MainWindow::onTimeOut()
 {
     QTime time= QTime::currentTime ();
     ui->timeEdit->setTime (time);
+}
+
+void MainWindow::slot_getParams()
+{
+
+    inputDlg->show ();
+    //按下的是Cancel键
+    if(inputDlg->exec()==InputDialog::Accepted)
+    {
+        qDebug("确认");
+        hough_dp = inputDlg->get_hough_dp ();
+        hough_minDist = inputDlg->get_hough_minDist ();
+        hough_param1 = inputDlg->get_hough_param1 ();
+        hough_param2 = inputDlg->get_hough_param2 ();
+        on_pushButton_clicked ();
+    }
+    //按下的是OK键
+    else
+    {
+        qDebug("取消");
+    }
+    qDebug()<<"hough_dp: "<< hough_dp<<"hough_minDist: "<<hough_minDist
+                           <<"hough_param1: "<<hough_param1
+                          <<"hough_param2: "<<hough_param2 ;
+}
+
+void MainWindow::slot_resetCT()
+{
+    imshow ("",myCtImg);
+    myCtQImage = QImage(myCtImg.data,myCtImg.cols,myCtImg.rows,QImage::Format_RGB888);
+    ctImgShow ();
 }

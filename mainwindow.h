@@ -10,6 +10,7 @@
 #include<QSqlQuery>
 #include<QMessageBox>
 #include<QTimer>
+#include"inputdialog.h"
 using namespace cv;
 using namespace std;
 
@@ -33,7 +34,8 @@ public:
     void showUserPhoto();//加载显示患者照片
     void ctImgHoughCircles();//用霍夫圆算法处理CT相片
 
-
+protected:
+    bool eventFilter(QObject *obj,QEvent *event);
 
 
 private slots:
@@ -44,15 +46,23 @@ private slots:
     void on_tabWidget_tabBarClicked(int index);
 
     void onTimeOut();
-
+    void slot_getParams();
+    void slot_resetCT();
 private:
     Ui::MainWindow *ui;
+    Mat myProCtImg;//处理之后的CT相片
     Mat myCtImg;//缓存CT相片（供程序的方法使用随时引用）
     Mat myCtGrayImg;//缓存CT灰度图（供程序算法处理用）
     QImage myCtQImage;//保存CT相片（转为文件存档）
     QSqlTableModel *model;//访问数据库视图信息的模型
     QSqlTableModel *model_d;//访问数据库附加详细信息（病历、照片）视图的模型
     QTimer *myTimer;//获取当前系统的时间（精确到秒）
+
+    InputDialog *inputDlg;
+    double hough_dp;
+    double hough_minDist;
+    double hough_param1;
+    double hough_param2;
 
 
 };

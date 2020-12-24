@@ -10,8 +10,8 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -19,9 +19,8 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QProgressBar>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpinBox>
@@ -38,6 +37,9 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionStart;
+    QAction *actionparamSet;
+    QAction *actionresetCT;
     QWidget *centralwidget;
     QLabel *label;
     QTreeWidget *treeWidget;
@@ -45,8 +47,6 @@ public:
     QLabel *label_2;
     QSlider *verticalSlider;
     QSlider *horizontalSlider;
-    QPushButton *pushButton;
-    QProgressBar *progressBar;
     QTabWidget *tabWidget;
     QWidget *tab;
     QSpinBox *ageSpinBox;
@@ -62,16 +62,7 @@ public:
     QWidget *tab_2;
     QTextEdit *caseTextEdit;
     QTableView *basicTableView;
-    QLineEdit *dp;
-    QLineEdit *minDist;
-    QLineEdit *param1;
-    QLineEdit *param2;
-    QLabel *dpla;
-    QLabel *minDist66;
-    QLabel *label_9;
-    QLabel *label_10;
-    QCheckBox *checkBox;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_2;
     QTimeEdit *timeEdit;
     QHBoxLayout *horizontalLayout;
@@ -79,6 +70,7 @@ public:
     QLCDNumber *monthLcdNumber;
     QLCDNumber *dayLcdNumber;
     QMenuBar *menubar;
+    QMenu *menu;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -91,6 +83,12 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
+        actionStart = new QAction(MainWindow);
+        actionStart->setObjectName(QString::fromUtf8("actionStart"));
+        actionparamSet = new QAction(MainWindow);
+        actionparamSet->setObjectName(QString::fromUtf8("actionparamSet"));
+        actionresetCT = new QAction(MainWindow);
+        actionresetCT->setObjectName(QString::fromUtf8("actionresetCT"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         QSizePolicy sizePolicy1(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
@@ -137,7 +135,7 @@ public:
         new QTreeWidgetItem(__qtreewidgetitem5);
         new QTreeWidgetItem(__qtreewidgetitem3);
         treeWidget->setObjectName(QString::fromUtf8("treeWidget"));
-        treeWidget->setGeometry(QRect(10, 60, 261, 131));
+        treeWidget->setGeometry(QRect(10, 430, 271, 361));
         QPalette palette;
         QBrush brush(QColor(85, 170, 255, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -171,16 +169,9 @@ public:
         horizontalSlider->setGeometry(QRect(310, 510, 661, 21));
         horizontalSlider->setValue(60);
         horizontalSlider->setOrientation(Qt::Horizontal);
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(300, 540, 91, 31));
-        progressBar = new QProgressBar(centralwidget);
-        progressBar->setObjectName(QString::fromUtf8("progressBar"));
-        progressBar->setGeometry(QRect(400, 540, 561, 31));
-        progressBar->setValue(0);
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(10, 450, 281, 321));
+        tabWidget->setGeometry(QRect(10, 60, 271, 331));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
         ageSpinBox = new QSpinBox(tab);
@@ -188,10 +179,10 @@ public:
         ageSpinBox->setGeometry(QRect(60, 90, 52, 24));
         label_6 = new QLabel(tab);
         label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(10, 200, 90, 15));
+        label_6->setGeometry(QRect(10, 210, 90, 15));
         photoLabel = new QLabel(tab);
         photoLabel->setObjectName(QString::fromUtf8("photoLabel"));
-        photoLabel->setGeometry(QRect(120, 10, 131, 161));
+        photoLabel->setGeometry(QRect(120, 10, 141, 181));
         photoLabel->setFrameShape(QFrame::Panel);
         photoLabel->setScaledContents(true);
         photoLabel->setAlignment(Qt::AlignCenter);
@@ -200,7 +191,7 @@ public:
         label_4->setGeometry(QRect(10, 90, 45, 15));
         ssnLineEdit = new QLineEdit(tab);
         ssnLineEdit->setObjectName(QString::fromUtf8("ssnLineEdit"));
-        ssnLineEdit->setGeometry(QRect(100, 200, 161, 31));
+        ssnLineEdit->setGeometry(QRect(20, 240, 241, 31));
         label_5 = new QLabel(tab);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setGeometry(QRect(10, 140, 45, 15));
@@ -230,48 +221,21 @@ public:
         tabWidget->addTab(tab_2, QString());
         basicTableView = new QTableView(centralwidget);
         basicTableView->setObjectName(QString::fromUtf8("basicTableView"));
-        basicTableView->setGeometry(QRect(300, 580, 671, 191));
-        dp = new QLineEdit(centralwidget);
-        dp->setObjectName(QString::fromUtf8("dp"));
-        dp->setGeometry(QRect(100, 210, 191, 31));
-        minDist = new QLineEdit(centralwidget);
-        minDist->setObjectName(QString::fromUtf8("minDist"));
-        minDist->setGeometry(QRect(100, 250, 191, 31));
-        param1 = new QLineEdit(centralwidget);
-        param1->setObjectName(QString::fromUtf8("param1"));
-        param1->setGeometry(QRect(100, 290, 191, 31));
-        param2 = new QLineEdit(centralwidget);
-        param2->setObjectName(QString::fromUtf8("param2"));
-        param2->setGeometry(QRect(100, 340, 191, 31));
-        dpla = new QLabel(centralwidget);
-        dpla->setObjectName(QString::fromUtf8("dpla"));
-        dpla->setGeometry(QRect(10, 220, 72, 15));
-        minDist66 = new QLabel(centralwidget);
-        minDist66->setObjectName(QString::fromUtf8("minDist66"));
-        minDist66->setGeometry(QRect(10, 260, 72, 15));
-        label_9 = new QLabel(centralwidget);
-        label_9->setObjectName(QString::fromUtf8("label_9"));
-        label_9->setGeometry(QRect(10, 300, 72, 15));
-        label_10 = new QLabel(centralwidget);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
-        label_10->setGeometry(QRect(10, 350, 72, 15));
-        checkBox = new QCheckBox(centralwidget);
-        checkBox->setObjectName(QString::fromUtf8("checkBox"));
-        checkBox->setGeometry(QRect(50, 400, 93, 21));
-        widget = new QWidget(centralwidget);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(700, 60, 254, 27));
-        horizontalLayout_2 = new QHBoxLayout(widget);
+        basicTableView->setGeometry(QRect(300, 540, 671, 231));
+        layoutWidget = new QWidget(centralwidget);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(700, 60, 254, 27));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        timeEdit = new QTimeEdit(widget);
+        timeEdit = new QTimeEdit(layoutWidget);
         timeEdit->setObjectName(QString::fromUtf8("timeEdit"));
 
         horizontalLayout_2->addWidget(timeEdit);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        yearLcdNumber = new QLCDNumber(widget);
+        yearLcdNumber = new QLCDNumber(layoutWidget);
         yearLcdNumber->setObjectName(QString::fromUtf8("yearLcdNumber"));
         yearLcdNumber->setDigitCount(4);
         yearLcdNumber->setSegmentStyle(QLCDNumber::Filled);
@@ -280,14 +244,14 @@ public:
 
         horizontalLayout->addWidget(yearLcdNumber);
 
-        monthLcdNumber = new QLCDNumber(widget);
+        monthLcdNumber = new QLCDNumber(layoutWidget);
         monthLcdNumber->setObjectName(QString::fromUtf8("monthLcdNumber"));
         monthLcdNumber->setDigitCount(2);
         monthLcdNumber->setProperty("value", QVariant(2.000000000000000));
 
         horizontalLayout->addWidget(monthLcdNumber);
 
-        dayLcdNumber = new QLCDNumber(widget);
+        dayLcdNumber = new QLCDNumber(layoutWidget);
         dayLcdNumber->setObjectName(QString::fromUtf8("dayLcdNumber"));
         dayLcdNumber->setDigitCount(2);
         dayLcdNumber->setProperty("intValue", QVariant(25));
@@ -301,10 +265,17 @@ public:
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 995, 25));
+        menu = new QMenu(menubar);
+        menu->setObjectName(QString::fromUtf8("menu"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
+
+        menubar->addAction(menu->menuAction());
+        menu->addAction(actionStart);
+        menu->addAction(actionparamSet);
+        menu->addAction(actionresetCT);
 
         retranslateUi(MainWindow);
 
@@ -318,6 +289,9 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        actionStart->setText(QCoreApplication::translate("MainWindow", "\345\274\200\345\247\213\350\257\212\346\226\255", nullptr));
+        actionparamSet->setText(QCoreApplication::translate("MainWindow", "\345\217\202\346\225\260\350\256\276\347\275\256", nullptr));
+        actionresetCT->setText(QCoreApplication::translate("MainWindow", "\351\207\215\347\275\256CT\347\233\270\347\211\207", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "\345\215\227\347\220\206\345\267\245\346\240\241\345\214\273\351\231\242\350\277\234\347\250\213\350\257\212\346\226\255\347\263\273\347\273\237", nullptr));
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
         ___qtreewidgetitem->setText(0, QCoreApplication::translate("MainWindow", "\346\240\241\345\214\273\351\231\242", nullptr));
@@ -386,7 +360,6 @@ public:
 
         CT_Img_Label->setText(QString());
         label_2->setText(QCoreApplication::translate("MainWindow", "CT\345\275\261\345\203\217", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "\345\274\200\345\247\213\350\257\212\346\226\255", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "\345\214\273\344\277\235\345\215\241\347\274\226\345\217\267\357\274\232", nullptr));
         photoLabel->setText(QCoreApplication::translate("MainWindow", "\346\232\202\346\227\240\347\205\247\347\211\207", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "\345\271\264\351\276\204\357\274\232", nullptr));
@@ -404,20 +377,8 @@ public:
 "</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\346\232\202\346\234\252\344\277\241\346\201\257</p></body></html>", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("MainWindow", "\347\227\205\345\216\206", nullptr));
-        dp->setInputMask(QString());
-        dp->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
-        minDist->setInputMask(QString());
-        minDist->setText(QCoreApplication::translate("MainWindow", "100", nullptr));
-        param1->setInputMask(QString());
-        param1->setText(QCoreApplication::translate("MainWindow", "100", nullptr));
-        param2->setInputMask(QString());
-        param2->setText(QCoreApplication::translate("MainWindow", "100", nullptr));
-        dpla->setText(QCoreApplication::translate("MainWindow", "dp", nullptr));
-        minDist66->setText(QCoreApplication::translate("MainWindow", "minDist", nullptr));
-        label_9->setText(QCoreApplication::translate("MainWindow", "param1", nullptr));
-        label_10->setText(QCoreApplication::translate("MainWindow", "param2", nullptr));
-        checkBox->setText(QCoreApplication::translate("MainWindow", "\351\207\215\346\226\260\351\200\211\346\213\251", nullptr));
         timeEdit->setDisplayFormat(QCoreApplication::translate("MainWindow", "H:mm:ss", nullptr));
+        menu->setTitle(QCoreApplication::translate("MainWindow", "\347\227\205\347\201\266\346\243\200\346\265\213", nullptr));
     } // retranslateUi
 
 };
