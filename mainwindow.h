@@ -33,14 +33,18 @@ public:
     void onTableSelectChange(int row);//改变数据网格选项联动表单
     void showUserPhoto();//加载显示患者照片
     void ctImgHoughCircles();//用霍夫圆算法处理CT相片
+    void ctImgPro_light(float contrat,int brightness);
+    void ctImgPro_scale(float angle,float scale);
+    void updateTime();
+
+    void ctImgBlur(QString type,int value);
+
 
 protected:
     bool eventFilter(QObject *obj,QEvent *event);
 
 
 private slots:
-    void on_pushButton_clicked();
-
     void on_basicTableView_clicked(const QModelIndex &index);
 
     void on_tabWidget_tabBarClicked(int index);
@@ -48,6 +52,20 @@ private slots:
     void onTimeOut();
     void slot_getParams();
     void slot_resetCT();
+    void on_horizontalSlider_valueChanged(int value);
+
+    void on_horizontalSlider_sliderMoved(int position);
+
+    void on_verticalSlider_valueChanged(int value);
+
+    void on_verticalSlider_sliderMoved(int position);
+
+    void slot_img2Gray();
+    void slot_guassianBlur();
+    void slot_bilateBlur();
+    void slot_clearNoise();
+
+
 private:
     Ui::MainWindow *ui;
     Mat myProCtImg;//处理之后的CT相片

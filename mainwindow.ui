@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>995</width>
-    <height>828</height>
+    <width>1110</width>
+    <height>894</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -52,9 +52,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>430</y>
+      <y>400</y>
       <width>271</width>
-      <height>361</height>
+      <height>221</height>
      </rect>
     </property>
     <property name="palette">
@@ -63,8 +63,8 @@
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>85</red>
-          <green>170</green>
+          <red>255</red>
+          <green>255</green>
           <blue>255</blue>
          </color>
         </brush>
@@ -74,8 +74,8 @@
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>85</red>
-          <green>170</green>
+          <red>255</red>
+          <green>255</green>
           <blue>255</blue>
          </color>
         </brush>
@@ -101,82 +101,7 @@
     </column>
     <item>
      <property name="text">
-      <string>溧水区</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>骨科</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>血管外科</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>心脏科</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>脑科</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>神经内科</string>
-      </property>
-     </item>
-    </item>
-    <item>
-     <property name="text">
-      <string>高淳区</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>呼吸科</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>消化科</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>泌尿外科</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>中医科</string>
-      </property>
-     </item>
-    </item>
-    <item>
-     <property name="text">
-      <string>浦口区</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>妇产科</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>老年医学科</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>儿科</string>
-      </property>
-     </item>
-    </item>
-    <item>
-     <property name="text">
-      <string>六合区</string>
+      <string>玄武区</string>
      </property>
      <item>
       <property name="text">
@@ -244,14 +169,89 @@
       </property>
      </item>
     </item>
+    <item>
+     <property name="text">
+      <string>校本部</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>骨科</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>血管外科</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>心脏科</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>脑科</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>神经内科</string>
+      </property>
+     </item>
+    </item>
+    <item>
+     <property name="text">
+      <string>江阴校区</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>消化科</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>呼吸科</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>泌尿外科</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>中医科</string>
+      </property>
+     </item>
+    </item>
+    <item>
+     <property name="text">
+      <string>紫金学院</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>妇产科</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>老年医学科</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>儿科</string>
+      </property>
+     </item>
+    </item>
    </widget>
    <widget class="QLabel" name="CT_Img_Label">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>90</y>
-      <width>641</width>
-      <height>411</height>
+      <x>291</x>
+      <y>91</y>
+      <width>754</width>
+      <height>504</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -289,38 +289,6 @@
     </property>
     <property name="text">
      <string>CT影像</string>
-    </property>
-   </widget>
-   <widget class="QSlider" name="verticalSlider">
-    <property name="geometry">
-     <rect>
-      <x>960</x>
-      <y>100</y>
-      <width>21</width>
-      <height>381</height>
-     </rect>
-    </property>
-    <property name="value">
-     <number>30</number>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
-    </property>
-   </widget>
-   <widget class="QSlider" name="horizontalSlider">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>510</y>
-      <width>661</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="value">
-     <number>60</number>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
    <widget class="QTabWidget" name="tabWidget">
@@ -510,20 +478,10 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
    </widget>
-   <widget class="QTableView" name="basicTableView">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>540</y>
-      <width>671</width>
-      <height>231</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>780</x>
       <y>60</y>
       <width>254</width>
       <height>27</height>
@@ -579,13 +537,115 @@ p, li { white-space: pre-wrap; }
      </item>
     </layout>
    </widget>
+   <widget class="QTableView" name="basicTableView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>630</y>
+      <width>1061</width>
+      <height>201</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_horizon">
+    <property name="geometry">
+     <rect>
+      <x>291</x>
+      <y>601</y>
+      <width>45</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>亮度</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="horizontalSlider">
+    <property name="geometry">
+     <rect>
+      <x>343</x>
+      <y>601</y>
+      <width>691</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="value">
+     <number>60</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+    <property name="tickPosition">
+     <enum>QSlider::TicksBelow</enum>
+    </property>
+    <property name="tickInterval">
+     <number>5</number>
+    </property>
+   </widget>
+   <widget class="QSlider" name="verticalSlider">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>100</y>
+      <width>20</width>
+      <height>471</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="value">
+     <number>30</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+    <property name="tickPosition">
+     <enum>QSlider::TicksAbove</enum>
+    </property>
+    <property name="tickInterval">
+     <number>5</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_vertical">
+    <property name="geometry">
+     <rect>
+      <x>1050</x>
+      <y>580</y>
+      <width>45</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;对比度&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>20</y>
+      <width>113</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>995</width>
+     <width>1110</width>
      <height>25</height>
     </rect>
    </property>
@@ -597,7 +657,28 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionparamSet"/>
     <addaction name="actionresetCT"/>
    </widget>
+   <widget class="QMenu" name="menuCT">
+    <property name="title">
+     <string>CT相片处理</string>
+    </property>
+    <addaction name="actionlight"/>
+    <addaction name="actionscale"/>
+    <addaction name="actiongray"/>
+    <addaction name="actionguassainBlur"/>
+    <addaction name="actionclearNoise"/>
+    <addaction name="actionbitlateBlur"/>
+   </widget>
+   <widget class="QMenu" name="menu_CT">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="actionreadCT"/>
+    <addaction name="actionsaveCT"/>
+    <addaction name="actionexit"/>
+   </widget>
+   <addaction name="menu_CT"/>
    <addaction name="menu"/>
+   <addaction name="menuCT"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionStart">
@@ -613,6 +694,51 @@ p, li { white-space: pre-wrap; }
   <action name="actionresetCT">
    <property name="text">
     <string>重置CT相片</string>
+   </property>
+  </action>
+  <action name="actionlight">
+   <property name="text">
+    <string>对比度和亮度</string>
+   </property>
+  </action>
+  <action name="actionscale">
+   <property name="text">
+    <string>旋转和缩放</string>
+   </property>
+  </action>
+  <action name="actiongray">
+   <property name="text">
+    <string>二值化</string>
+   </property>
+  </action>
+  <action name="actionguassainBlur">
+   <property name="text">
+    <string>高斯滤波</string>
+   </property>
+  </action>
+  <action name="actionclearNoise">
+   <property name="text">
+    <string>噪声消除</string>
+   </property>
+  </action>
+  <action name="actionbitlateBlur">
+   <property name="text">
+    <string>双边滤波</string>
+   </property>
+  </action>
+  <action name="actionreadCT">
+   <property name="text">
+    <string> 读取 CT</string>
+   </property>
+  </action>
+  <action name="actionsaveCT">
+   <property name="text">
+    <string>将当前 CT 另存为</string>
+   </property>
+  </action>
+  <action name="actionexit">
+   <property name="text">
+    <string> 退出程序</string>
    </property>
   </action>
  </widget>

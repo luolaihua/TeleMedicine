@@ -38,15 +38,67 @@ MainWindow::~MainWindow()
  */
 void MainWindow::initMainWindow()
 {
-    QString ctImgPath = "Tumor3.jpg";
+    QString ctImgPath = "CT.jpg";
     Mat ctImg = imread(ctImgPath.toLatin1 ().data ());
     cvtColor (ctImg,ctImg,COLOR_BGR2RGB);//转换色彩空间，opencv中的是BGR，Qt中的是RGB
     myCtImg = ctImg;
+    myProCtImg = ctImg;
     Mat ctGrayImg;
     cvtColor (ctImg,ctGrayImg,COLOR_RGB2GRAY);
     myCtGrayImg = ctGrayImg;
     myCtQImage = QImage(ctImg.data,ctImg.cols,ctImg.rows,QImage::Format_RGB888);
     ctImgShow ();
+
+    //绑定消息槽函数
+    connect (ui->actionStart,&QAction::triggered ,this,&MainWindow::ctImgProc);
+
+    inputDlg = new InputDialog(this);
+    connect (ui->actionparamSet,&QAction::triggered ,this,&MainWindow::slot_getParams);
+    connect (ui->actionresetCT,&QAction::triggered ,this,&MainWindow::slot_resetCT );
+
+    //给CT照片的label安装事件过滤器
+    ui->CT_Img_Label->installEventFilter (this);
+
+    //旋转缩放，对比度亮度调节
+    ui->label_horizon->hide ();
+    ui->label_vertical->hide ();
+    ui->horizontalSlider->hide ();
+    ui->verticalSlider->hide ();
+    connect (ui->actionlight,&QAction::triggered ,[=](){
+        ui->label_horizon->setText ("亮度");
+        ui->label_vertical->setText ("对比度");
+        ui->label_horizon->show ();
+        ui->label_vertical->show ();
+        ui->horizontalSlider->show ();
+        ui->verticalSlider->show ();
+    });
+    connect (ui->actionscale,&QAction::triggered ,[=](){
+        ui->label_horizon->setText ("旋转");
+        ui->label_vertical->setText ("缩放");
+        ui->label_horizon->show ();
+        ui->label_vertical->show ();
+        ui->horizontalSlider->show ();
+        ui->verticalSlider->show ();
+    });
+
+    //文件菜单中的三个action
+    //退出动作
+    connect (ui->actionexit,&QAction::triggered ,this,&MainWindow::close);
+    //重新读取CT照片动作
+    connect (ui->actionreadCT,&QAction::triggered ,this,&MainWindow::ctImgRead);
+    //保存CT
+    connect (ui->actionsaveCT,&QAction::triggered ,this,&MainWindow::ctImgSave);
+
+    ///CT相片处理中的动作
+    connect (ui->actiongray,&QAction::triggered ,this,&MainWindow::slot_img2Gray);
+    //高斯滤波
+       connect (ui->actionguassainBlur,&QAction::triggered ,this,&MainWindow::slot_guassianBlur);
+       connect (ui->actionbitlateBlur,&QAction::triggered ,this,&MainWindow::slot_bilateBlur );
+       connect (ui->actionclearNoise,&QAction::triggered ,this,&MainWindow::slot_clearNoise );
+
+}
+void MainWindow::updateTime()
+{
     //时间日期更新
     QDate date = QDate::currentDate ();
     int year = date.year ();
@@ -58,18 +110,35 @@ void MainWindow::initMainWindow()
     myTimer = new QTimer();
     myTimer->setInterval (1000);
     myTimer->start ();
-    //绑定消息槽函数
     connect (myTimer,&QTimer::timeout ,this,&MainWindow::onTimeOut );
-    connect (ui->actionStart,&QAction::triggered ,this,&MainWindow::on_pushButton_clicked );
-
-    inputDlg = new InputDialog(this);
-    connect (ui->actionparamSet,&QAction::triggered ,this,&MainWindow::slot_getParams);
-    connect (ui->actionresetCT,&QAction::triggered ,this,&MainWindow::slot_resetCT );
-
-    //给CT照片的label安装事件过滤器
-    ui->CT_Img_Label->installEventFilter (this);
 }
 
+void MainWindow::ctImgBlur(QString type, int value)
+{
+    qDebug() << "type:"<<type<<" value:"<<value;
+    Mat procImg = myProCtImg;
+    Mat imgDst;
+    if(type == "高斯滤波")
+    {
+        int i = ((value/3)%2 == 0) ? (value/3)+1:(value/3);
+        qDebug() << i;
+        GaussianBlur (procImg,imgDst,Size(i,i),0,0);
+    }else if(type == "双边滤波")
+    {
+        int i = value/3;
+        bilateralFilter (procImg,imgDst,i,i*2,i/2);
+    }else if(type == "清除噪声")
+    {
+        double i = value *2.0;
+        int type = ui->lineEdit->text().toInt();
+        qDebug() << type;
+//        if(procImg.channels ()>1)
+//            cvtColor (procImg,procImg,COLOR_RGB2GRAY);
+        threshold(procImg,imgDst,i,255,type);
+    }
+    myCtQImage = QImage(imgDst.data,imgDst.cols,imgDst.rows,QImage::Format_RGB888);
+    ctImgShow ();
+}
 /**
  * @brief 读取CT照片
  */
@@ -116,16 +185,25 @@ void MainWindow::ctImgShow()
 {
     ui->CT_Img_Label->setPixmap (QPixmap::fromImage (myCtQImage.scaled (ui->CT_Img_Label->size (),Qt::KeepAspectRatio)));
 }
-
+/**
+ * @brief 将图片另存
+ */
 void MainWindow::ctImgSave()
 {
-    QFile image("C:/Users/LUO/Desktop/CPP/Tumor_1.jpg");
-    if(!image.open (QIODevice::ReadWrite)) return;
-    QByteArray qba;
-    QBuffer buf(&qba);
-    buf.open (QIODevice::WriteOnly);
-    myCtQImage.save (&buf,"JPG");
-    image.write (qba);
+    QString fileName = QFileDialog::getSaveFileName (this,tr("Sava CT"),"untitled.jpg",tr("Images (*.png *.bmp *.jpg)"));
+    qDebug() << fileName;
+    if(!fileName.isEmpty ())
+    {
+        QFile image(fileName);
+        if(!image.open (QIODevice::ReadWrite)) return;
+        QByteArray qba;
+        QBuffer buf(&qba);
+        buf.open (QIODevice::WriteOnly);
+        myCtQImage.save (&buf,"JPG");
+        image.write (qba);
+        QMessageBox::information (this,"保存CT",QString("成功将图片保存在\n")+fileName);
+    }
+
 }
 
 void MainWindow::onTableSelectChange(int row)
@@ -208,7 +286,7 @@ void MainWindow::ctImgHoughCircles()
     {
         Point center(cvRound (h_circles[i][0]),cvRound (h_circles[i][1]));
         int h_radius = cvRound (h_circles[i][2]);
-        circle(ctColorImg, Point(h_circles[i][0], h_circles[i][1]), h_circles[i][2], Scalar(0, 0, 255), 2);
+        //circle(ctColorImg, Point(h_circles[i][0], h_circles[i][1]), h_circles[i][2], Scalar(0, 0, 255), 2);
         circle (ctColorImg,center,h_radius,Scalar(238,0,238),3,8,0);
         circle (ctColorImg,center,3,Scalar(238,0,0),-1,8,0);
         //        processValue++;
@@ -218,6 +296,31 @@ void MainWindow::ctImgHoughCircles()
     myCtQImage = QImage(myProCtImg.data,myProCtImg.cols,myProCtImg.rows,QImage::Format_RGB888);
 
 }
+
+void MainWindow::ctImgPro_light(float contrat, int brightness)
+{
+    //qDebug() << "contrat:"<<contrat<<"brightness"<<brightness;
+    Mat imgSrc = myCtImg;
+    Mat imgDst = Mat::zeros (imgSrc.size(),imgSrc.type ());//初始生成0像素矩阵
+    imgSrc.convertTo (imgDst,-1,contrat,brightness);
+    myCtQImage = QImage(imgDst.data,imgDst.cols,imgDst.rows,QImage::Format_RGB888);
+    ctImgShow ();
+}
+
+void MainWindow::ctImgPro_scale(float angle, float scale)
+{
+    //qDebug() << "angle:"<<angle<<"scale："<<scale;
+    Mat imgSrc = myCtImg ;
+    Mat imgDst ;
+    Point centerPoint = Point(imgSrc.cols/2,imgSrc.rows/2);
+    //这是仿射变换矩阵
+    Mat imgRot = getRotationMatrix2D (centerPoint,angle,scale);
+    warpAffine (imgSrc,imgDst,imgRot,myCtImg.size());
+    myCtQImage = QImage(imgDst.data,imgDst.cols,imgDst.rows,QImage::Format_RGB888);
+    ctImgShow ();
+}
+
+
 
 /**
  * @brief 过滤出CT_Img_Label的双击事件
@@ -245,24 +348,6 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
     }
 }
 
-
-void MainWindow::on_pushButton_clicked()
-{
-
-    //    QTime time;
-    //    time.start ();
-    //    ui->progressBar->setMaximum (0);
-    //    ui->progressBar->setMinimum (0);
-    //    while(time.elapsed ()<5000)
-    //    {
-    //        QCoreApplication::processEvents ();//处理事件以保持界面刷新
-    //    }
-    //    ui->progressBar->setMaximum (100);
-    //    ui->progressBar->setMinimum (0);
-    ctImgProc ();
-    // ui->progressBar->setValue (0);
-    // ctImgSave();
-}
 
 void MainWindow::on_basicTableView_clicked(const QModelIndex &index)
 {
@@ -308,7 +393,7 @@ void MainWindow::slot_getParams()
         hough_minDist = inputDlg->get_hough_minDist ();
         hough_param1 = inputDlg->get_hough_param1 ();
         hough_param2 = inputDlg->get_hough_param2 ();
-        on_pushButton_clicked ();
+        ctImgProc ();
     }
     //按下的是OK键
     else
@@ -322,7 +407,104 @@ void MainWindow::slot_getParams()
 
 void MainWindow::slot_resetCT()
 {
-    imshow ("",myCtImg);
+    //imshow ("",myCtImg);
     myCtQImage = QImage(myCtImg.data,myCtImg.cols,myCtImg.rows,QImage::Format_RGB888);
     ctImgShow ();
+}
+
+//水平方向是亮度和旋转；滤波功能
+void MainWindow::on_horizontalSlider_valueChanged(int value)
+{   
+    QString text = ui->label_horizon->text ();
+    if(text=="亮度")
+    {
+        ctImgPro_light (1.0,value);
+    }else if(text=="对比度"){
+        ctImgPro_scale ((value/100.0)*720.0-360,ui->verticalSlider->value ()/30.0);
+    }else{
+        ctImgBlur (text,value);
+    }
+}
+//水平方向是亮度和旋转
+void MainWindow::on_horizontalSlider_sliderMoved(int position)
+{
+    QString text = ui->label_horizon->text ();
+    if(text=="亮度")
+    {
+        ctImgPro_light (1.0,position);
+    }else if(text=="对比度"){
+        ctImgPro_scale ((position/100.0)*720.0-360,ui->verticalSlider->value ()/30.0);
+    }else{
+        ctImgBlur (text,position);
+    }
+}
+//垂直方向是缩放和对比度
+void MainWindow::on_verticalSlider_valueChanged(int value)
+{
+    if(ui->label_horizon->text ()=="亮度")
+    {
+        ctImgPro_light (value/33.0,0);
+    }else{
+        ctImgPro_scale ((ui->horizontalSlider->value ()/100.0)*720.0-360,value/30.0);
+    }
+}
+//垂直方向是缩放和对比度
+void MainWindow::on_verticalSlider_sliderMoved(int position)
+{
+    if(ui->label_horizon->text ()=="亮度")
+    {
+        ctImgPro_light (position/33.0,0);
+    }else{
+        ctImgPro_scale ((ui->horizontalSlider->value ()/100.0)*720.0-360,position/30.0);
+    }
+}
+
+/**
+ * @brief 二值化操作
+ */
+void MainWindow::slot_img2Gray()
+{
+    //imshow ("",myCtGrayImg);
+    myCtQImage = QImage(myCtGrayImg.data,myCtGrayImg.cols,myCtGrayImg.rows,QImage::Format_Grayscale8);
+    ctImgShow ();
+    myProCtImg = myCtGrayImg;
+}
+
+/**
+ * @brief 高斯滤波
+ */
+void MainWindow::slot_guassianBlur()
+{
+    Mat proImg = myProCtImg;
+    ui->label_horizon->show ();
+    ui->horizontalSlider->setValue (10);
+    ui->horizontalSlider->show ();
+    ui->label_horizon->setText ("高斯滤波");
+    ui->label_vertical->hide ();
+    ui->verticalSlider->hide ();
+    ui->horizontalSlider->setValue (10);
+}
+
+void MainWindow::slot_bilateBlur()
+{
+    Mat proImg = myProCtImg;
+    ui->label_horizon->show ();
+    ui->horizontalSlider->setValue (10);
+    ui->horizontalSlider->show ();
+    ui->label_horizon->setText ("双边滤波");
+    ui->label_vertical->hide ();
+    ui->verticalSlider->hide ();
+
+}
+
+void MainWindow::slot_clearNoise()
+{
+    Mat proImg = myProCtImg;
+    ui->label_horizon->show ();
+    ui->horizontalSlider->setValue (10);
+    ui->horizontalSlider->show ();
+    ui->label_horizon->setText ("清除噪声");
+    ui->label_vertical->hide ();
+    ui->verticalSlider->hide ();
+    ui->horizontalSlider->setValue (10);
 }
