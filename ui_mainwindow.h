@@ -44,11 +44,18 @@ public:
     QAction *actionscale;
     QAction *actiongray;
     QAction *actionguassainBlur;
-    QAction *actionclearNoise;
     QAction *actionbitlateBlur;
     QAction *actionreadCT;
     QAction *actionsaveCT;
     QAction *actionexit;
+    QAction *action0;
+    QAction *action1;
+    QAction *action2;
+    QAction *action3;
+    QAction *action4;
+    QAction *actioncellSetting;
+    QAction *actionimportCell;
+    QAction *actionstartCount;
     QWidget *centralwidget;
     QLabel *label;
     QTreeWidget *treeWidget;
@@ -80,11 +87,12 @@ public:
     QSlider *horizontalSlider;
     QSlider *verticalSlider;
     QLabel *label_vertical;
-    QLineEdit *lineEdit;
     QMenuBar *menubar;
     QMenu *menu;
     QMenu *menuCT;
+    QMenu *menu_2;
     QMenu *menu_CT;
+    QMenu *menu_3;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -111,8 +119,6 @@ public:
         actiongray->setObjectName(QString::fromUtf8("actiongray"));
         actionguassainBlur = new QAction(MainWindow);
         actionguassainBlur->setObjectName(QString::fromUtf8("actionguassainBlur"));
-        actionclearNoise = new QAction(MainWindow);
-        actionclearNoise->setObjectName(QString::fromUtf8("actionclearNoise"));
         actionbitlateBlur = new QAction(MainWindow);
         actionbitlateBlur->setObjectName(QString::fromUtf8("actionbitlateBlur"));
         actionreadCT = new QAction(MainWindow);
@@ -121,6 +127,22 @@ public:
         actionsaveCT->setObjectName(QString::fromUtf8("actionsaveCT"));
         actionexit = new QAction(MainWindow);
         actionexit->setObjectName(QString::fromUtf8("actionexit"));
+        action0 = new QAction(MainWindow);
+        action0->setObjectName(QString::fromUtf8("action0"));
+        action1 = new QAction(MainWindow);
+        action1->setObjectName(QString::fromUtf8("action1"));
+        action2 = new QAction(MainWindow);
+        action2->setObjectName(QString::fromUtf8("action2"));
+        action3 = new QAction(MainWindow);
+        action3->setObjectName(QString::fromUtf8("action3"));
+        action4 = new QAction(MainWindow);
+        action4->setObjectName(QString::fromUtf8("action4"));
+        actioncellSetting = new QAction(MainWindow);
+        actioncellSetting->setObjectName(QString::fromUtf8("actioncellSetting"));
+        actionimportCell = new QAction(MainWindow);
+        actionimportCell->setObjectName(QString::fromUtf8("actionimportCell"));
+        actionstartCount = new QAction(MainWindow);
+        actionstartCount->setObjectName(QString::fromUtf8("actionstartCount"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         QSizePolicy sizePolicy1(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
@@ -306,9 +328,6 @@ public:
         label_vertical->setObjectName(QString::fromUtf8("label_vertical"));
         label_vertical->setGeometry(QRect(1050, 580, 45, 17));
         label_vertical->setAlignment(Qt::AlignCenter);
-        lineEdit = new QLineEdit(centralwidget);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(770, 20, 113, 23));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -317,8 +336,12 @@ public:
         menu->setObjectName(QString::fromUtf8("menu"));
         menuCT = new QMenu(menubar);
         menuCT->setObjectName(QString::fromUtf8("menuCT"));
+        menu_2 = new QMenu(menuCT);
+        menu_2->setObjectName(QString::fromUtf8("menu_2"));
         menu_CT = new QMenu(menubar);
         menu_CT->setObjectName(QString::fromUtf8("menu_CT"));
+        menu_3 = new QMenu(menubar);
+        menu_3->setObjectName(QString::fromUtf8("menu_3"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -327,18 +350,27 @@ public:
         menubar->addAction(menu_CT->menuAction());
         menubar->addAction(menu->menuAction());
         menubar->addAction(menuCT->menuAction());
+        menubar->addAction(menu_3->menuAction());
         menu->addAction(actionStart);
         menu->addAction(actionparamSet);
         menu->addAction(actionresetCT);
         menuCT->addAction(actionlight);
         menuCT->addAction(actionscale);
-        menuCT->addAction(actiongray);
-        menuCT->addAction(actionguassainBlur);
-        menuCT->addAction(actionclearNoise);
         menuCT->addAction(actionbitlateBlur);
+        menuCT->addAction(actionguassainBlur);
+        menuCT->addAction(actiongray);
+        menuCT->addAction(menu_2->menuAction());
+        menu_2->addAction(action0);
+        menu_2->addAction(action1);
+        menu_2->addAction(action2);
+        menu_2->addAction(action3);
+        menu_2->addAction(action4);
         menu_CT->addAction(actionreadCT);
         menu_CT->addAction(actionsaveCT);
         menu_CT->addAction(actionexit);
+        menu_3->addAction(actionimportCell);
+        menu_3->addAction(actionstartCount);
+        menu_3->addAction(actioncellSetting);
 
         retranslateUi(MainWindow);
 
@@ -357,13 +389,20 @@ public:
         actionresetCT->setText(QCoreApplication::translate("MainWindow", "\351\207\215\347\275\256CT\347\233\270\347\211\207", nullptr));
         actionlight->setText(QCoreApplication::translate("MainWindow", "\345\257\271\346\257\224\345\272\246\345\222\214\344\272\256\345\272\246", nullptr));
         actionscale->setText(QCoreApplication::translate("MainWindow", "\346\227\213\350\275\254\345\222\214\347\274\251\346\224\276", nullptr));
-        actiongray->setText(QCoreApplication::translate("MainWindow", "\344\272\214\345\200\274\345\214\226", nullptr));
+        actiongray->setText(QCoreApplication::translate("MainWindow", "\347\201\260\345\272\246\345\214\226", nullptr));
         actionguassainBlur->setText(QCoreApplication::translate("MainWindow", "\351\253\230\346\226\257\346\273\244\346\263\242", nullptr));
-        actionclearNoise->setText(QCoreApplication::translate("MainWindow", "\345\231\252\345\243\260\346\266\210\351\231\244", nullptr));
         actionbitlateBlur->setText(QCoreApplication::translate("MainWindow", "\345\217\214\350\276\271\346\273\244\346\263\242", nullptr));
         actionreadCT->setText(QCoreApplication::translate("MainWindow", " \350\257\273\345\217\226 CT", nullptr));
         actionsaveCT->setText(QCoreApplication::translate("MainWindow", "\345\260\206\345\275\223\345\211\215 CT \345\217\246\345\255\230\344\270\272", nullptr));
         actionexit->setText(QCoreApplication::translate("MainWindow", " \351\200\200\345\207\272\347\250\213\345\272\217", nullptr));
+        action0->setText(QCoreApplication::translate("MainWindow", "\344\272\214\350\277\233\345\210\266\351\230\210\345\200\274", nullptr));
+        action1->setText(QCoreApplication::translate("MainWindow", "\345\217\215\344\272\214\350\277\233\345\210\266\351\230\210\345\200\274", nullptr));
+        action2->setText(QCoreApplication::translate("MainWindow", "\346\210\252\346\226\255\351\230\210\345\200\274", nullptr));
+        action3->setText(QCoreApplication::translate("MainWindow", "0\351\230\210\345\200\274", nullptr));
+        action4->setText(QCoreApplication::translate("MainWindow", "\345\217\2150\351\230\210\345\200\274", nullptr));
+        actioncellSetting->setText(QCoreApplication::translate("MainWindow", "\350\256\241\346\225\260\350\256\276\347\275\256", nullptr));
+        actionimportCell->setText(QCoreApplication::translate("MainWindow", "\345\257\274\345\205\245\347\273\206\350\203\236\345\233\276\347\211\207", nullptr));
+        actionstartCount->setText(QCoreApplication::translate("MainWindow", "\345\274\200\345\247\213\350\256\241\346\225\260", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "\345\215\227\347\220\206\345\267\245\346\240\241\345\214\273\351\231\242\350\277\234\347\250\213\350\257\212\346\226\255\347\263\273\347\273\237", nullptr));
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
         ___qtreewidgetitem->setText(0, QCoreApplication::translate("MainWindow", "\346\240\241\345\214\273\351\231\242", nullptr));
@@ -452,10 +491,11 @@ public:
         timeEdit->setDisplayFormat(QCoreApplication::translate("MainWindow", "H:mm:ss", nullptr));
         label_horizon->setText(QCoreApplication::translate("MainWindow", "\344\272\256\345\272\246", nullptr));
         label_vertical->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p>\345\257\271\346\257\224\345\272\246</p></body></html>", nullptr));
-        lineEdit->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         menu->setTitle(QCoreApplication::translate("MainWindow", "\347\227\205\347\201\266\346\243\200\346\265\213", nullptr));
         menuCT->setTitle(QCoreApplication::translate("MainWindow", "CT\347\233\270\347\211\207\345\244\204\347\220\206", nullptr));
+        menu_2->setTitle(QCoreApplication::translate("MainWindow", "\351\230\210\345\200\274\345\244\204\347\220\206", nullptr));
         menu_CT->setTitle(QCoreApplication::translate("MainWindow", "\346\226\207\344\273\266", nullptr));
+        menu_3->setTitle(QCoreApplication::translate("MainWindow", "\347\273\206\350\203\236\350\256\241\346\225\260", nullptr));
     } // retranslateUi
 
 };

@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent), ui(new Ui::MainWindow)
     //使用了列表初始化，三种情况必须要用：常成员，引用类型 成员，无默认构造函数的类成员对象。
     ,
-    hough_dp(2), hough_minDist(100), hough_param1(100), hough_param2(100) {
+    hough_dp(2), hough_minDist(100), hough_param1(100), hough_param2(100), threshold_type(0),ksize(21),upThreshold(100),downThreshold(200),erodeSize(1),dilateSize(3) {
     ui->setupUi(this);
     setCentralWidget(ui->centralwidget);
 
@@ -44,11 +44,15 @@ void MainWindow::initMainWindow() {
     myCtGrayImg = ctGrayImg;
     myCtQImage = QImage(ctImg.data, ctImg.cols, ctImg.rows, QImage::Format_RGB888);
     ctImgShow();
+    //更新时间
+    updateTime();
 
     //绑定消息槽函数
     connect(ui->actionStart, &QAction::triggered, this, &MainWindow::ctImgProc);
 
+    //参数输入窗口
     inputDlg = new InputDialog(this);
+    cellDlg = new cellSettingDialog(this);
     connect(ui->actionparamSet, &QAction::triggered, this, &MainWindow::slot_getParams);
     connect(ui->actionresetCT, &QAction::triggered, this, &MainWindow::slot_resetCT);
 
@@ -90,7 +94,21 @@ void MainWindow::initMainWindow() {
     //高斯滤波
     connect(ui->actionguassainBlur, &QAction::triggered, this, &MainWindow::slot_guassianBlur);
     connect(ui->actionbitlateBlur, &QAction::triggered, this, &MainWindow::slot_bilateBlur);
-    connect(ui->actionclearNoise, &QAction::triggered, this, &MainWindow::slot_clearNoise);
+    //    connect(ui->actionclearNoise, &QAction::triggered, this, &MainWindow::slot_clearNoise);
+    //阈值动作
+    connect(ui->action0, &QAction::triggered, this, [=]() { slot_threshold(0); });
+    connect(ui->action1, &QAction::triggered, this, [=]() { slot_threshold(1); });
+    connect(ui->action2, &QAction::triggered, this, [=]() { slot_threshold(2); });
+    connect(ui->action3, &QAction::triggered, this, [=]() { slot_threshold(3); });
+    connect(ui->action4, &QAction::triggered, this, [=]() { slot_threshold(4); });
+
+    //细胞计数动作
+    connect(ui->actionimportCell, &QAction::triggered, this, [=]() { ctImgRead(); });
+    connect(ui->actionstartCount, &QAction::triggered, this, &MainWindow::slot_cellCount);
+    connect(ui->actioncellSetting, &QAction::triggered, this, [=]() {
+        cellDlg->show();
+    });
+
 }
 void MainWindow::updateTime() {
     //时间日期更新
@@ -108,7 +126,7 @@ void MainWindow::updateTime() {
 }
 
 void MainWindow::ctImgBlur(QString type, int value) {
-    qDebug() << "type:" << type << " value:" << value;
+    // qDebug() << "type:" << type << " value:" << value;
     Mat procImg = myProCtImg;
     Mat imgDst;
     if (type == "高斯滤波") {
@@ -118,15 +136,17 @@ void MainWindow::ctImgBlur(QString type, int value) {
     } else if (type == "双边滤波") {
         int i = value / 3;
         bilateralFilter(procImg, imgDst, i, i * 2, i / 2);
-    } else if (type == "清除噪声") {
+
+    } else if (type == "阈值") {
         double i = value * 2.5;
-        int type = ui->lineEdit->text().toInt();
-        qDebug() << type;
-        //        if(procImg.channels ()>1)
-        //            cvtColor (procImg,procImg,COLOR_RGB2GRAY);
-        threshold(procImg, imgDst, i, 255, type);
+        //        Mat grayImg;
+        //        cvtColor(myCtImg, grayImg, COLOR_RGB2GRAY);
+        //        //        imshow("", grayImg);
+        threshold(procImg, imgDst, i, 255, threshold_type);
     }
-    myCtQImage = QImage(imgDst.data, imgDst.cols, imgDst.rows, QImage::Format_RGB888);
+
+    enum QImage::Format m = (imgDst.channels() > 1) ? QImage::Format_RGB888 : QImage::Format_Grayscale8;
+    myCtQImage = QImage(imgDst.data, imgDst.cols, imgDst.rows, m);
     ctImgShow();
 }
 /**
@@ -280,6 +300,7 @@ void MainWindow::ctImgPro_light(float contrat, int brightness) {
     Mat imgSrc = myCtImg;
     Mat imgDst = Mat::zeros(imgSrc.size(), imgSrc.type());  //初始生成0像素矩阵
     imgSrc.convertTo(imgDst, -1, contrat, brightness);
+
     myCtQImage = QImage(imgDst.data, imgDst.cols, imgDst.rows, QImage::Format_RGB888);
     ctImgShow();
 }
@@ -292,6 +313,7 @@ void MainWindow::ctImgPro_scale(float angle, float scale) {
     //这是仿射变换矩阵
     Mat imgRot = getRotationMatrix2D(centerPoint, angle, scale);
     warpAffine(imgSrc, imgDst, imgRot, myCtImg.size());
+
     myCtQImage = QImage(imgDst.data, imgDst.cols, imgDst.rows, QImage::Format_RGB888);
     ctImgShow();
 }
@@ -346,7 +368,7 @@ void MainWindow::onTimeOut() {
 
 void MainWindow::slot_getParams() {
     inputDlg->show();
-    //按下的是Cancel键
+    //按下的是Cancel键,通过exec判断按的是哪个按钮
     if (inputDlg->exec() == InputDialog::Accepted) {
         qDebug("确认");
         hough_dp = inputDlg->get_hough_dp();
@@ -365,6 +387,7 @@ void MainWindow::slot_getParams() {
 
 void MainWindow::slot_resetCT() {
     // imshow ("",myCtImg);
+    myProCtImg = myCtImg;
     myCtQImage = QImage(myCtImg.data, myCtImg.cols, myCtImg.rows, QImage::Format_RGB888);
     ctImgShow();
 }
@@ -442,13 +465,159 @@ void MainWindow::slot_bilateBlur() {
     ui->verticalSlider->hide();
 }
 
-void MainWindow::slot_clearNoise() {
+void MainWindow::slot_threshold(int type) {
+    threshold_type = type;
     Mat proImg = myProCtImg;
     ui->label_horizon->show();
     ui->horizontalSlider->setValue(10);
     ui->horizontalSlider->show();
-    ui->label_horizon->setText("清除噪声");
+    ui->label_horizon->setText("阈值");
     ui->label_vertical->hide();
     ui->verticalSlider->hide();
     ui->horizontalSlider->setValue(10);
+}
+//填充
+void fillHole(const Mat srcBw, Mat& dstBw) {
+    Size m_Size = srcBw.size();
+    Mat Temp = Mat::zeros(m_Size.height + 2, m_Size.width + 2, srcBw.type());  //延展图像
+    srcBw.copyTo(Temp(Range(1, m_Size.height + 1), Range(1, m_Size.width + 1)));
+
+    //选择（0，0）作为种子点，归入种子点区域内像素点的新像素值为255（白色）
+    cv::floodFill(Temp, Point(0, 0), Scalar(255));  //填充区域
+
+    Mat cutImg;  //裁剪延展的图像
+    Temp(Range(1, m_Size.height + 1), Range(1, m_Size.width + 1)).copyTo(cutImg);
+
+    dstBw = srcBw | (~cutImg);
+}
+void MainWindow::slot_cellCount() {
+//    ///opencv矩阵赋值函数copyTo、clone、重载元算赋‘=’之间实现的功能相似均是给不同的矩阵赋值功能。
+
+//    copyTo和clone函数基本相同，被赋值的矩阵和赋值矩阵之间空间独立，不共享同一空间。
+
+//        但是重载元算赋‘=’，被赋值的矩阵和赋值矩阵之间空间共享，改变任一个矩阵的值，会同时影响到另一个矩阵。当矩阵作为函数的返回值时其功能和重载元算赋‘=’相同，赋值运算赋会给矩阵空间增加一次计数，所以函数变量返回后函数内部申请的变量空间并不会被撤销，在主函数中仍可以正常使用传递后的参数。
+    Mat srcImg = myCtImg.clone ();
+    Mat srcGrayImage = myCtGrayImg.clone ();
+
+    ksize = cellDlg->get_blur_ksize ();
+    upThreshold = cellDlg->get_canny_up ();
+    downThreshold = cellDlg->get_canny_down ();
+    erodeSize = cellDlg->get_erode_size ();
+    dilateSize = cellDlg->get_dilate_size ();
+    //qDebug() << ksize;
+
+    // TODO 参数输入做安全检查
+
+
+    // resize(srcImg, srcImg, Size(200, 200));//重定义图片大小
+    //    namedWindow("原图", 0);
+    //    imshow("原图", srcImg);
+
+    //灰度化
+    // cvtColor(srcImg, srcGrayImage, COLOR_BGR2GRAY);
+
+    //二值化，也可以使用阈值处理threshold
+    srcGrayImage = srcGrayImage > 160;
+    // threshold(srcImage, srcImage, 0, 255, THRESH_OTSU);
+
+    //创建一个8比特单通道的与原图尺寸相同的空Mat
+    Mat vec_rgb = Mat::zeros(srcGrayImage.size(), CV_8UC1);
+
+    //对原图做中值滤波，结果保存在vec_rgb,初步除噪，如果滤波之后还有很多杂点，尝试提高ksize
+    medianBlur(srcGrayImage, vec_rgb, ksize);
+    //    namedWindow("中值滤波", 0);
+    //    imshow("中值滤波", vec_rgb);
+
+    /// Reduce noise with a kernel 3x3
+    // blur(srcImage, vec_rgb, Size(3, 3));
+
+    /// 边缘检测，输入的是单通道图像，主要是靠上阀值和下阀值，
+    Canny(vec_rgb, vec_rgb, upThreshold, downThreshold, 3);
+    //    namedWindow("边缘检测", 0);
+    //    imshow("边缘检测", vec_rgb);
+
+    fillHole(vec_rgb, vec_rgb);  //填充
+                                 //    namedWindow("填充", 0);
+                                 //    imshow("填充", vec_rgb);
+
+    //先腐蚀再膨胀，除噪 ,getStructuringElement函数经常与腐蚀膨胀操作配套使用
+    Mat element = getStructuringElement(MORPH_ELLIPSE, Size(2 * erodeSize + 1, 2 * erodeSize + 1), Point(erodeSize, erodeSize));
+    erode(vec_rgb, vec_rgb, element);  //腐蚀
+                                       //    namedWindow("腐蚀", 0);
+                                       //    imshow("腐蚀", vec_rgb);
+
+    Mat element1 = getStructuringElement(MORPH_ELLIPSE, Size(2 * dilateSize + 1, 2 * dilateSize + 1), Point(dilateSize, dilateSize));
+    dilate(vec_rgb, vec_rgb, element1);  //膨胀
+                                         //    namedWindow("膨胀", 0);
+                                         //    imshow("膨胀", vec_rgb);
+
+    //开始找寻轮廓
+    vector<vector<Point>> contours;  //轮廓
+    vector<Vec4i> hierarchy;         //分层
+
+    Point centerPoint;  //红色灯的中点
+
+    //轮廓的检索模式为RETR_LIST，检测所有的轮廓，包括内围、外围轮廓，但是检测到的轮廓不建立等级关
+    //系，彼此之间独立，没有等级关系，这就意味着这个检索模式下不存在父轮廓或内嵌轮廓，
+    //	所以hierarchy向量内所有元素的第3、第4个分量都会被置为 - 1
+    //定义轮廓的近似方法为CHAIN_APPROX_NONE，保存物体边界上所有连续的轮廓点到contours向量内
+    findContours(vec_rgb, contours, hierarchy, RETR_LIST, CHAIN_APPROX_NONE, Point(0, 0));  //寻找轮廓
+
+    vector<vector<Point>> contours_poly(contours.size());  //近似后的轮廓点集
+    vector<Rect> boundRect(contours.size());               //包围点集的最小矩形vector
+    vector<Point2f> center(contours.size());               //包围点集的最小圆形vector
+    vector<float> radius(contours.size());                 //包围点集的最小圆形半径vector
+
+    for (int i = 0; i < contours.size(); i++) {
+        /**
+         *approxPolyDP 函数：主要功能是把一个连续光滑曲线折线化
+         */
+        approxPolyDP(Mat(contours[i]), contours_poly[i], 3,
+                     true);  //对多边形曲线做适当近似，contours_poly[i]是输出的近似点集
+        /**
+         * boundingRect 函数：计算轮廓的垂直边界最小矩形，矩形是与图像上下边界平行的
+         * 读入的参数必须是vector或者Mat点集
+         */
+        boundRect[i] = boundingRect(Mat(contours_poly[i]));  //计算并返回包围轮廓点集的最小矩形
+        /**
+         * 寻找包裹轮廓的最小圆：minEnclosingCircle 函数
+         */
+        minEnclosingCircle(contours_poly[i], center[i], radius[i]);  //计算并返回包围轮廓点集的最小圆形及其半径
+        // cout << "细胞颗粒坐标" << center[i] << endl;
+    }
+
+    Mat drawing = Mat::zeros(vec_rgb.size(), CV_8UC3);
+    for (int i = 0; i < contours.size(); i++) {
+        Scalar color = (0, 0, 255);  //蓝色线画轮廓
+        /**
+         * drawContours函数的作用:主要用于画出图像的轮廓
+         */
+        drawContours(drawing, contours_poly, i, color, 1, 4, hierarchy, 0,
+                     Point());  //根据轮廓点集contours_poly和轮廓结构hierarchy画出轮廓
+        //画矩形
+        /**
+         * void rectangle(InputOutputArray img, Point pt1, Point pt2,
+                          const Scalar& color, int thickness = 1,
+                          int lineType = LINE_8, int shift = 0);
+         */
+        rectangle(drawing, boundRect[i].tl(), boundRect[i].br(), color, 2, 8, 0);  //画矩形，tl矩形左上角，br右上角
+        //画圆
+        /**
+         * CV_EXPORTS_W void circle(InputOutputArray img, Point center, int radius,
+                       const Scalar& color, int thickness = 1,
+                       int lineType = LINE_8, int shift = 0);
+         */
+        circle(drawing, center[i], (int)radius[i], color, 2, 8, 0);  //画圆形
+        rectangle(srcImg, boundRect[i].tl(), boundRect[i].br(), Scalar(255, 10, 50), 2, 8, 0);
+    }
+
+    /// 显示在一个窗口
+    //    namedWindow("包围最小矩形和圆形", 0);
+    //    imshow("包围最小矩形和圆形", drawing);
+    //    namedWindow("原图中的细胞", 0);
+    //    imshow("原图中的细胞", srcImg);
+    myCtQImage = QImage(srcImg.data, srcImg.cols, srcImg.rows, QImage::Format_RGB888);
+    ctImgShow();
+    QMessageBox::information(this, "细胞计数", QString("计算成功，当前图片中细胞个数为%1").arg(contours.size()));
+    // qDebug() << "细胞个数" << contours.size();
 }

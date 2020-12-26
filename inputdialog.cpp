@@ -40,3 +40,11 @@ double InputDialog::get_hough_param2()
     return ui->param2->text ().toDouble ();
 }
 
+
+void InputDialog::on_resetParams_clicked()
+{
+    ui->dp->setText ("2");
+    ui->minDist->setText ("100");
+    ui->param1->setText ("100");
+    ui->param2->setText ("100");
+}

@@ -23,7 +23,10 @@ class InputDialog : public QDialog {
     // TODO:数据的回传显示
     // TODO:重置操作
 
-  private:
+private slots:
+    void on_resetParams_clicked();
+
+private:
     Ui::InputDialog* ui;
 };
 

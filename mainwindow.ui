@@ -626,19 +626,6 @@ p, li { white-space: pre-wrap; }
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>770</x>
-      <y>20</y>
-      <width>113</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -661,12 +648,22 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>CT相片处理</string>
     </property>
+    <widget class="QMenu" name="menu_2">
+     <property name="title">
+      <string>阈值处理</string>
+     </property>
+     <addaction name="action0"/>
+     <addaction name="action1"/>
+     <addaction name="action2"/>
+     <addaction name="action3"/>
+     <addaction name="action4"/>
+    </widget>
     <addaction name="actionlight"/>
     <addaction name="actionscale"/>
-    <addaction name="actiongray"/>
-    <addaction name="actionguassainBlur"/>
-    <addaction name="actionclearNoise"/>
     <addaction name="actionbitlateBlur"/>
+    <addaction name="actionguassainBlur"/>
+    <addaction name="actiongray"/>
+    <addaction name="menu_2"/>
    </widget>
    <widget class="QMenu" name="menu_CT">
     <property name="title">
@@ -676,9 +673,18 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionsaveCT"/>
     <addaction name="actionexit"/>
    </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>细胞计数</string>
+    </property>
+    <addaction name="actionimportCell"/>
+    <addaction name="actionstartCount"/>
+    <addaction name="actioncellSetting"/>
+   </widget>
    <addaction name="menu_CT"/>
    <addaction name="menu"/>
    <addaction name="menuCT"/>
+   <addaction name="menu_3"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionStart">
@@ -708,17 +714,12 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actiongray">
    <property name="text">
-    <string>二值化</string>
+    <string>灰度化</string>
    </property>
   </action>
   <action name="actionguassainBlur">
    <property name="text">
     <string>高斯滤波</string>
-   </property>
-  </action>
-  <action name="actionclearNoise">
-   <property name="text">
-    <string>噪声消除</string>
    </property>
   </action>
   <action name="actionbitlateBlur">
@@ -739,6 +740,46 @@ p, li { white-space: pre-wrap; }
   <action name="actionexit">
    <property name="text">
     <string> 退出程序</string>
+   </property>
+  </action>
+  <action name="action0">
+   <property name="text">
+    <string>二进制阈值</string>
+   </property>
+  </action>
+  <action name="action1">
+   <property name="text">
+    <string>反二进制阈值</string>
+   </property>
+  </action>
+  <action name="action2">
+   <property name="text">
+    <string>截断阈值</string>
+   </property>
+  </action>
+  <action name="action3">
+   <property name="text">
+    <string>0阈值</string>
+   </property>
+  </action>
+  <action name="action4">
+   <property name="text">
+    <string>反0阈值</string>
+   </property>
+  </action>
+  <action name="actioncellSetting">
+   <property name="text">
+    <string>计数设置</string>
+   </property>
+  </action>
+  <action name="actionimportCell">
+   <property name="text">
+    <string>导入细胞图片</string>
+   </property>
+  </action>
+  <action name="actionstartCount">
+   <property name="text">
+    <string>开始计数</string>
    </property>
   </action>
  </widget>
