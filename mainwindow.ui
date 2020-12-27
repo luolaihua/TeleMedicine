@@ -101,7 +101,7 @@
     </column>
     <item>
      <property name="text">
-      <string>玄武区</string>
+      <string>校本部</string>
      </property>
      <item>
       <property name="text">
@@ -171,7 +171,7 @@
     </item>
     <item>
      <property name="text">
-      <string>校本部</string>
+      <string>江阴校区</string>
      </property>
      <item>
       <property name="text">
@@ -201,7 +201,7 @@
     </item>
     <item>
      <property name="text">
-      <string>江阴校区</string>
+      <string>紫金学院</string>
      </property>
      <item>
       <property name="text">
@@ -221,26 +221,6 @@
      <item>
       <property name="text">
        <string>中医科</string>
-      </property>
-     </item>
-    </item>
-    <item>
-     <property name="text">
-      <string>紫金学院</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>妇产科</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>老年医学科</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>儿科</string>
       </property>
      </item>
     </item>
@@ -301,30 +281,25 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
       <string>信息</string>
      </attribute>
-     <widget class="QSpinBox" name="ageSpinBox">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>90</y>
-        <width>52</width>
-        <height>24</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>210</y>
+        <y>220</y>
         <width>90</width>
         <height>15</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>华文楷体</family>
+       </font>
       </property>
       <property name="text">
        <string>医保卡编号：</string>
@@ -333,10 +308,10 @@
      <widget class="QLabel" name="photoLabel">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>110</x>
         <y>10</y>
-        <width>141</width>
-        <height>181</height>
+        <width>151</width>
+        <height>191</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -352,74 +327,25 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>90</y>
-        <width>45</width>
-        <height>15</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>年龄：</string>
-      </property>
-     </widget>
      <widget class="QLineEdit" name="ssnLineEdit">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>240</y>
+        <y>250</y>
         <width>241</width>
         <height>31</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QLabel" name="label_5">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>140</y>
-        <width>45</width>
-        <height>15</height>
-       </rect>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
       </property>
-      <property name="text">
-       <string>民族：</string>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
-     </widget>
-     <widget class="QComboBox" name="ethniComboBox">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>140</y>
-        <width>47</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="currentText">
-       <string>汉</string>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <item>
-       <property name="text">
-        <string>汉</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QRadioButton" name="femaleRadioButton">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>50</y>
-        <width>44</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>女</string>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLabel" name="nameLabel">
@@ -440,41 +366,140 @@
       <property name="text">
        <string>患者名</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
-     <widget class="QRadioButton" name="maleRadioButton">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>50</y>
-        <width>44</width>
-        <height>21</height>
+        <y>60</y>
+        <width>91</width>
+        <height>131</height>
        </rect>
       </property>
-      <property name="text">
-       <string>男</string>
-      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="font">
+          <font>
+           <family>华文楷体</family>
+          </font>
+         </property>
+         <property name="text">
+          <string>性别：</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_sex">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <property name="text">
+          <string>男</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="font">
+          <font>
+           <family>华文楷体</family>
+          </font>
+         </property>
+         <property name="text">
+          <string>年龄：</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_age">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <property name="text">
+          <string>21</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="font">
+          <font>
+           <family>华文楷体</family>
+          </font>
+         </property>
+         <property name="text">
+          <string>民族：</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="label_ethic">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <property name="text">
+          <string>汉</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>病历</string>
      </attribute>
-     <widget class="QTextEdit" name="caseTextEdit">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
+        <x>0</x>
+        <y>0</y>
         <width>261</width>
-        <height>271</height>
+        <height>291</height>
        </rect>
       </property>
-      <property name="html">
-       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QTextEdit" name="caseTextEdit">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;暂未信息&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="saveHistoryBtn">
+         <property name="text">
+          <string>保存</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>

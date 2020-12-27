@@ -12,7 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QComboBox>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
@@ -21,15 +21,15 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QRadioButton>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
-#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QTimeEdit>
 #include <QtWidgets/QTreeWidget>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -63,18 +63,23 @@ public:
     QLabel *label_2;
     QTabWidget *tabWidget;
     QWidget *tab;
-    QSpinBox *ageSpinBox;
     QLabel *label_6;
     QLabel *photoLabel;
-    QLabel *label_4;
     QLineEdit *ssnLineEdit;
-    QLabel *label_5;
-    QComboBox *ethniComboBox;
-    QRadioButton *femaleRadioButton;
     QLabel *nameLabel;
-    QRadioButton *maleRadioButton;
+    QWidget *widget;
+    QGridLayout *gridLayout;
+    QLabel *label_7;
+    QLabel *label_sex;
+    QLabel *label_4;
+    QLabel *label_age;
+    QLabel *label_5;
+    QLabel *label_ethic;
     QWidget *tab_2;
+    QWidget *widget1;
+    QVBoxLayout *verticalLayout;
     QTextEdit *caseTextEdit;
+    QPushButton *saveHistoryBtn;
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_2;
     QTimeEdit *timeEdit;
@@ -184,10 +189,6 @@ public:
         new QTreeWidgetItem(__qtreewidgetitem4);
         new QTreeWidgetItem(__qtreewidgetitem4);
         new QTreeWidgetItem(__qtreewidgetitem4);
-        QTreeWidgetItem *__qtreewidgetitem5 = new QTreeWidgetItem(treeWidget);
-        new QTreeWidgetItem(__qtreewidgetitem5);
-        new QTreeWidgetItem(__qtreewidgetitem5);
-        new QTreeWidgetItem(__qtreewidgetitem5);
         treeWidget->setObjectName(QString::fromUtf8("treeWidget"));
         treeWidget->setGeometry(QRect(10, 400, 271, 221));
         QPalette palette;
@@ -218,50 +219,99 @@ public:
         tabWidget->setGeometry(QRect(10, 60, 271, 331));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
-        ageSpinBox = new QSpinBox(tab);
-        ageSpinBox->setObjectName(QString::fromUtf8("ageSpinBox"));
-        ageSpinBox->setGeometry(QRect(60, 90, 52, 24));
         label_6 = new QLabel(tab);
         label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(10, 210, 90, 15));
+        label_6->setGeometry(QRect(10, 220, 90, 15));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223"));
+        label_6->setFont(font2);
         photoLabel = new QLabel(tab);
         photoLabel->setObjectName(QString::fromUtf8("photoLabel"));
-        photoLabel->setGeometry(QRect(120, 10, 141, 181));
+        photoLabel->setGeometry(QRect(110, 10, 151, 191));
         photoLabel->setFrameShape(QFrame::Panel);
         photoLabel->setScaledContents(true);
         photoLabel->setAlignment(Qt::AlignCenter);
-        label_4 = new QLabel(tab);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(10, 90, 45, 15));
         ssnLineEdit = new QLineEdit(tab);
         ssnLineEdit->setObjectName(QString::fromUtf8("ssnLineEdit"));
-        ssnLineEdit->setGeometry(QRect(20, 240, 241, 31));
-        label_5 = new QLabel(tab);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(10, 140, 45, 15));
-        ethniComboBox = new QComboBox(tab);
-        ethniComboBox->addItem(QString());
-        ethniComboBox->setObjectName(QString::fromUtf8("ethniComboBox"));
-        ethniComboBox->setGeometry(QRect(60, 140, 47, 23));
-        femaleRadioButton = new QRadioButton(tab);
-        femaleRadioButton->setObjectName(QString::fromUtf8("femaleRadioButton"));
-        femaleRadioButton->setGeometry(QRect(70, 50, 44, 21));
+        ssnLineEdit->setGeometry(QRect(20, 250, 241, 31));
+        ssnLineEdit->setFont(font1);
+        ssnLineEdit->setAlignment(Qt::AlignCenter);
+        ssnLineEdit->setReadOnly(true);
         nameLabel = new QLabel(tab);
         nameLabel->setObjectName(QString::fromUtf8("nameLabel"));
         nameLabel->setGeometry(QRect(10, 10, 91, 31));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223"));
-        font2.setPointSize(14);
-        nameLabel->setFont(font2);
-        maleRadioButton = new QRadioButton(tab);
-        maleRadioButton->setObjectName(QString::fromUtf8("maleRadioButton"));
-        maleRadioButton->setGeometry(QRect(10, 50, 44, 21));
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223"));
+        font3.setPointSize(14);
+        nameLabel->setFont(font3);
+        nameLabel->setAlignment(Qt::AlignCenter);
+        widget = new QWidget(tab);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(10, 60, 91, 131));
+        gridLayout = new QGridLayout(widget);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        label_7 = new QLabel(widget);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setFont(font2);
+
+        gridLayout->addWidget(label_7, 0, 0, 1, 1);
+
+        label_sex = new QLabel(widget);
+        label_sex->setObjectName(QString::fromUtf8("label_sex"));
+        label_sex->setFrameShape(QFrame::NoFrame);
+        label_sex->setFrameShadow(QFrame::Raised);
+        label_sex->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(label_sex, 0, 1, 1, 1);
+
+        label_4 = new QLabel(widget);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setFont(font2);
+
+        gridLayout->addWidget(label_4, 1, 0, 1, 1);
+
+        label_age = new QLabel(widget);
+        label_age->setObjectName(QString::fromUtf8("label_age"));
+        label_age->setFrameShape(QFrame::NoFrame);
+        label_age->setFrameShadow(QFrame::Raised);
+        label_age->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(label_age, 1, 1, 1, 1);
+
+        label_5 = new QLabel(widget);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setFont(font2);
+
+        gridLayout->addWidget(label_5, 2, 0, 1, 1);
+
+        label_ethic = new QLabel(widget);
+        label_ethic->setObjectName(QString::fromUtf8("label_ethic"));
+        label_ethic->setFrameShape(QFrame::NoFrame);
+        label_ethic->setFrameShadow(QFrame::Raised);
+        label_ethic->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(label_ethic, 2, 1, 1, 1);
+
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
-        caseTextEdit = new QTextEdit(tab_2);
+        widget1 = new QWidget(tab_2);
+        widget1->setObjectName(QString::fromUtf8("widget1"));
+        widget1->setGeometry(QRect(0, 0, 261, 291));
+        verticalLayout = new QVBoxLayout(widget1);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        caseTextEdit = new QTextEdit(widget1);
         caseTextEdit->setObjectName(QString::fromUtf8("caseTextEdit"));
-        caseTextEdit->setGeometry(QRect(10, 10, 261, 271));
+
+        verticalLayout->addWidget(caseTextEdit);
+
+        saveHistoryBtn = new QPushButton(widget1);
+        saveHistoryBtn->setObjectName(QString::fromUtf8("saveHistoryBtn"));
+
+        verticalLayout->addWidget(saveHistoryBtn);
+
         tabWidget->addTab(tab_2, QString());
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
@@ -374,8 +424,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
-        ethniComboBox->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -410,7 +459,7 @@ public:
         const bool __sortingEnabled = treeWidget->isSortingEnabled();
         treeWidget->setSortingEnabled(false);
         QTreeWidgetItem *___qtreewidgetitem1 = treeWidget->topLevelItem(0);
-        ___qtreewidgetitem1->setText(0, QCoreApplication::translate("MainWindow", "\347\216\204\346\255\246\345\214\272", nullptr));
+        ___qtreewidgetitem1->setText(0, QCoreApplication::translate("MainWindow", "\346\240\241\346\234\254\351\203\250", nullptr));
         QTreeWidgetItem *___qtreewidgetitem2 = ___qtreewidgetitem1->child(0);
         ___qtreewidgetitem2->setText(0, QCoreApplication::translate("MainWindow", "\345\206\205\347\247\221", nullptr));
         QTreeWidgetItem *___qtreewidgetitem3 = ___qtreewidgetitem2->child(0);
@@ -438,7 +487,7 @@ public:
         QTreeWidgetItem *___qtreewidgetitem14 = ___qtreewidgetitem1->child(2);
         ___qtreewidgetitem14->setText(0, QCoreApplication::translate("MainWindow", "\346\200\245\350\257\212\347\247\221", nullptr));
         QTreeWidgetItem *___qtreewidgetitem15 = treeWidget->topLevelItem(1);
-        ___qtreewidgetitem15->setText(0, QCoreApplication::translate("MainWindow", "\346\240\241\346\234\254\351\203\250", nullptr));
+        ___qtreewidgetitem15->setText(0, QCoreApplication::translate("MainWindow", "\346\261\237\351\230\264\346\240\241\345\214\272", nullptr));
         QTreeWidgetItem *___qtreewidgetitem16 = ___qtreewidgetitem15->child(0);
         ___qtreewidgetitem16->setText(0, QCoreApplication::translate("MainWindow", "\351\252\250\347\247\221", nullptr));
         QTreeWidgetItem *___qtreewidgetitem17 = ___qtreewidgetitem15->child(1);
@@ -450,7 +499,7 @@ public:
         QTreeWidgetItem *___qtreewidgetitem20 = ___qtreewidgetitem15->child(4);
         ___qtreewidgetitem20->setText(0, QCoreApplication::translate("MainWindow", "\347\245\236\347\273\217\345\206\205\347\247\221", nullptr));
         QTreeWidgetItem *___qtreewidgetitem21 = treeWidget->topLevelItem(2);
-        ___qtreewidgetitem21->setText(0, QCoreApplication::translate("MainWindow", "\346\261\237\351\230\264\346\240\241\345\214\272", nullptr));
+        ___qtreewidgetitem21->setText(0, QCoreApplication::translate("MainWindow", "\347\264\253\351\207\221\345\255\246\351\231\242", nullptr));
         QTreeWidgetItem *___qtreewidgetitem22 = ___qtreewidgetitem21->child(0);
         ___qtreewidgetitem22->setText(0, QCoreApplication::translate("MainWindow", "\346\266\210\345\214\226\347\247\221", nullptr));
         QTreeWidgetItem *___qtreewidgetitem23 = ___qtreewidgetitem21->child(1);
@@ -459,34 +508,26 @@ public:
         ___qtreewidgetitem24->setText(0, QCoreApplication::translate("MainWindow", "\346\263\214\345\260\277\345\244\226\347\247\221", nullptr));
         QTreeWidgetItem *___qtreewidgetitem25 = ___qtreewidgetitem21->child(3);
         ___qtreewidgetitem25->setText(0, QCoreApplication::translate("MainWindow", "\344\270\255\345\214\273\347\247\221", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem26 = treeWidget->topLevelItem(3);
-        ___qtreewidgetitem26->setText(0, QCoreApplication::translate("MainWindow", "\347\264\253\351\207\221\345\255\246\351\231\242", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem27 = ___qtreewidgetitem26->child(0);
-        ___qtreewidgetitem27->setText(0, QCoreApplication::translate("MainWindow", "\345\246\207\344\272\247\347\247\221", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem28 = ___qtreewidgetitem26->child(1);
-        ___qtreewidgetitem28->setText(0, QCoreApplication::translate("MainWindow", "\350\200\201\345\271\264\345\214\273\345\255\246\347\247\221", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem29 = ___qtreewidgetitem26->child(2);
-        ___qtreewidgetitem29->setText(0, QCoreApplication::translate("MainWindow", "\345\204\277\347\247\221", nullptr));
         treeWidget->setSortingEnabled(__sortingEnabled);
 
         CT_Img_Label->setText(QString());
         label_2->setText(QCoreApplication::translate("MainWindow", "CT\345\275\261\345\203\217", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "\345\214\273\344\277\235\345\215\241\347\274\226\345\217\267\357\274\232", nullptr));
         photoLabel->setText(QCoreApplication::translate("MainWindow", "\346\232\202\346\227\240\347\205\247\347\211\207", nullptr));
-        label_4->setText(QCoreApplication::translate("MainWindow", "\345\271\264\351\276\204\357\274\232", nullptr));
-        label_5->setText(QCoreApplication::translate("MainWindow", "\346\260\221\346\227\217\357\274\232", nullptr));
-        ethniComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "\346\261\211", nullptr));
-
-        ethniComboBox->setCurrentText(QCoreApplication::translate("MainWindow", "\346\261\211", nullptr));
-        femaleRadioButton->setText(QCoreApplication::translate("MainWindow", "\345\245\263", nullptr));
         nameLabel->setText(QCoreApplication::translate("MainWindow", "\346\202\243\350\200\205\345\220\215", nullptr));
-        maleRadioButton->setText(QCoreApplication::translate("MainWindow", "\347\224\267", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "\346\200\247\345\210\253\357\274\232", nullptr));
+        label_sex->setText(QCoreApplication::translate("MainWindow", "\347\224\267", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "\345\271\264\351\276\204\357\274\232", nullptr));
+        label_age->setText(QCoreApplication::translate("MainWindow", "21", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "\346\260\221\346\227\217\357\274\232", nullptr));
+        label_ethic->setText(QCoreApplication::translate("MainWindow", "\346\261\211", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "\344\277\241\346\201\257", nullptr));
         caseTextEdit->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\346\232\202\346\234\252\344\277\241\346\201\257</p></body></html>", nullptr));
+        saveHistoryBtn->setText(QCoreApplication::translate("MainWindow", "\344\277\235\345\255\230", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("MainWindow", "\347\227\205\345\216\206", nullptr));
         timeEdit->setDisplayFormat(QCoreApplication::translate("MainWindow", "H:mm:ss", nullptr));
         label_horizon->setText(QCoreApplication::translate("MainWindow", "\344\272\256\345\272\246", nullptr));

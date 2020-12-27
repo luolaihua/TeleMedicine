@@ -1,12 +1,16 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include<QDebug>
+#include <QFile>
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlTableModel>
 #include <QTimer>
+#include<QTreeWidgetItem>
+#include<QTreeWidget>
 #include <opencv2/highgui/highgui.hpp>  //opencv高层GUI和媒体IO
 #include <opencv2/imgproc/imgproc.hpp>  //opencv图象处理
 #include <opencv2/opencv.hpp>
@@ -28,6 +32,7 @@ class MainWindow : public QMainWindow {
   public:
     MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
+    void initData(); //初始化数据
     void initMainWindow();              //初始化主窗体
     void ctImgRead();                   //读取CT相片
     void ctImgProc();                   // CT相片处理
@@ -36,11 +41,10 @@ class MainWindow : public QMainWindow {
     void onTableSelectChange(int row);  //改变数据网格选项联动表单
     void showUserPhoto();               //加载显示患者照片
     void ctImgHoughCircles();           //用霍夫圆算法处理CT相片
-    void ctImgPro_light(float contrat, int brightness);
-    void ctImgPro_scale(float angle, float scale);
-    void updateTime();
-
-    void ctImgBlur(QString type, int value);
+    void ctImgPro_light(float contrat, int brightness);//调整亮度
+    void ctImgPro_scale(float angle, float scale);//缩放
+    void updateTime();//更新时间
+    void ctImgBlur(QString type, int value);//滤波功能
 
   protected:
     bool eventFilter(QObject* obj, QEvent* event);
@@ -66,7 +70,11 @@ class MainWindow : public QMainWindow {
     void slot_bilateBlur();
     void slot_threshold(int type);
     void slot_cellCount();
-  private:
+    void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
+
+    void on_saveHistoryBtn_clicked();
+
+private:
     Ui::MainWindow* ui;
     Mat myProCtImg;           //处理之后的CT相片
     Mat myCtImg;              //缓存CT相片（供程序的方法使用随时引用）
@@ -104,6 +112,50 @@ static bool createMySqlConn() {
         return false;
     }
     // QMessageBox::information (0,QObject::tr("后台数据库已启动、正在运行……"),"数据库连接成功，即将启动程序。");
+
+/*
+    //创建SQL查询
+    QSqlQuery query(sqldb);
+    //向数据库中插入数据
+//    QString insStr = "insert into user_profile values('320199101011806888','张美丽','女','汉','1986-03-04','南京市高淳区淳溪镇汶溪路666号','暂无',null)";
+//    if(!query.exec (insStr)){
+//        qDebug() << "插入失败";
+//    }else{
+//        qDebug() << "插入成功";
+//    }
+    //向数据库中插入照片
+    //照片路径
+    QString photoPath = "C:\\Users\\LUO\\Desktop\\10.jpg";
+    //照片文件对象
+    QFile photoFile(photoPath);
+
+    //判断照片是否存在
+    if(photoFile.exists ()){
+        //存在的话就存入数据库
+        //用字节数组存储图片数据
+        QByteArray picData;
+        //用只读的方式打开图片文件
+        photoFile.open (QIODevice::ReadOnly);
+        //将图片数据读入字节数组
+        picData = photoFile.readAll ();
+        //文件关闭
+        photoFile.close ();
+        //将照片数据封装成变量
+        QVariant var(picData);
+        //更新的sql语句
+        QString sqlstr = "update user_profile set picture=? where name='葛二妮'";
+//                QString sqlstr = "insert into user_profile values('320199101011806999','张美兰','女','汉','1996-12-04','南京市高淳区淳溪镇汶溪路999号','暂无',?)";
+        query.prepare (sqlstr);
+        //绑定数据，填入照片数据参数
+        query.addBindValue (var);
+        //执行更新操作
+        if(!query.exec ()){
+            qDebug() << "插入照片失败";
+        }else{
+            qDebug() << "插入照片成功";
+        }
+    }
+*/
     sqldb.close();
     return true;
 }

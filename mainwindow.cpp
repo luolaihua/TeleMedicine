@@ -1,7 +1,6 @@
 ﻿#include "mainwindow.h"
 
 #include <QBuffer>
-#include <QDebug>
 #include <QFileDialog>
 #include <QMouseEvent>
 
@@ -12,9 +11,14 @@ MainWindow::MainWindow(QWidget* parent) :
     ,
     hough_dp(2), hough_minDist(100), hough_param1(100), hough_param2(100), threshold_type(0),ksize(21),upThreshold(100),downThreshold(200),erodeSize(1),dilateSize(3) {
     ui->setupUi(this);
-    setCentralWidget(ui->centralwidget);
-
     initMainWindow();
+    initData ();
+}
+
+MainWindow::~MainWindow() { delete ui; }
+
+void MainWindow::initData()
+{
     //基本视图信息；
     model = new QSqlTableModel(this);
     model->setTable("basic_inf");
@@ -23,13 +27,11 @@ MainWindow::MainWindow(QWidget* parent) :
     model_d = new QSqlTableModel(this);
     model_d->setTable("details_inf");
     model_d->select();
-    //数据网格信息加载
-    ui->basicTableView->setModel(model);
-    //初始化表单患者信息
-    onTableSelectChange(0);
+//    //数据网格信息加载
+//    ui->basicTableView->setModel(model);
+//    //初始化表单患者信息
+//    onTableSelectChange(0);
 }
-
-MainWindow::~MainWindow() { delete ui; }
 /**
  * @brief 初始化窗体中要显示的CT相片及系统当前日期时间
  */
@@ -212,50 +214,6 @@ void MainWindow::ctImgSave() {
     }
 }
 
-void MainWindow::onTableSelectChange(int row) {
-    int r = 1;  //默认显示第一行
-    //获取当前索引
-    if (row != 0)
-        r = ui->basicTableView->currentIndex().row();
-    QModelIndex index;
-    //姓名列
-    index = model->index(r, 1);
-    ui->nameLabel->setText(model->data(index).toString());
-    //性别 列
-    index = model->index(r, 2);
-    QString sex = model->data(index).toString();
-    (sex.compare("男") == 0) ? ui->maleRadioButton->setChecked(true) : ui->femaleRadioButton->setChecked(true);
-    //出生日期
-    index = model->index(r, 4);
-    QDate date;
-    int now = date.currentDate().year();
-    int birth = model->data(index).toDate().year();
-    ui->ageSpinBox->setValue(now - birth);  //计算年龄
-    //民族
-    index = model->index(r, 3);
-    QString ethnic = model->data(index).toString();
-    ui->ethniComboBox->setCurrentText(ethnic);
-    //医保卡号
-    index = model->index(r, 0);
-    QString ssn = model->data(index).toString();
-    ui->ssnLineEdit->setText(ssn);
-    showUserPhoto();
-}
-
-void MainWindow::showUserPhoto() {
-    QPixmap photo;
-    QModelIndex index;
-    for (int i = 0; i < model_d->rowCount(); i++) {
-        index = model_d->index(i, 0);
-        QString current_name = model_d->data(index).toString();
-        if (current_name.compare(ui->nameLabel->text()) == 0) {
-            index = model_d->index(i, 2);
-            break;
-        }
-    }
-    photo.loadFromData(model_d->data(index).toByteArray(), "JPG");
-    ui->photoLabel->setPixmap(photo);
-}
 
 /**
  * @brief 使用Contrib扩展库中的霍夫圆算法检测和定位病灶所在的位置
@@ -342,24 +300,6 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event) {
     }
 }
 
-void MainWindow::on_basicTableView_clicked(const QModelIndex& index) { onTableSelectChange(1); }
-
-void MainWindow::on_tabWidget_tabBarClicked(int index) {
-    //填写病历
-    if (index == 1) {
-        QModelIndex index;
-        for (int i = 0; i < model_d->rowCount(); i++) {
-            index = model_d->index(i, 0);
-            QString current_name = model_d->data(index).toString();
-            if (current_name.compare(ui->nameLabel->text()) == 0) {
-                index = model_d->index(i, 1);
-                break;
-            }
-        }
-        ui->caseTextEdit->setText(model_d->data(index).toString());
-        ui->caseTextEdit->setFont(QFont("楷体", 12));
-    }
-}
 
 void MainWindow::onTimeOut() {
     QTime time = QTime::currentTime();
@@ -620,4 +560,120 @@ void MainWindow::slot_cellCount() {
     ctImgShow();
     QMessageBox::information(this, "细胞计数", QString("计算成功，当前图片中细胞个数为%1").arg(contours.size()));
     // qDebug() << "细胞个数" << contours.size();
+}
+
+void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
+{
+    QString itemText = item->text (column);
+    if(itemText == "校本部"){
+        //数据网格信息加载
+        ui->basicTableView->setModel(model);
+        //初始化表单患者信息
+        onTableSelectChange(0);
+    }else if(itemText == "紫金学院"||itemText == "江阴校区"){
+        QMessageBox::information (this,"提示","暂无数据");
+    }
+}
+
+void MainWindow::on_saveHistoryBtn_clicked()
+{
+    QString name = ui->nameLabel->text ();
+    QString str = ui->caseTextEdit->document()->toPlainText ();
+    //存入前先转为QVAriant类型
+    QVariant var(str);
+//    //更新数据库中的病历
+//    QSqlQuery query;
+//    QString sqlStr = "update user_profile set casehistory=? where name=?";
+//    query.prepare (sqlStr);
+//    query.bindValue (0,str);
+//    query.bindValue (1,name);
+//    if(query.exec()){
+//        qDebug() << "更新成功";
+//    }else{
+//        qDebug() << "更新失败";
+//    }
+    //直接更新model里的数据，不用去操作数据库,有两个model，他们的index不一样
+    QModelIndex index ;
+    //只能逐行按照名字查找
+
+    for(int i=0;i<model_d->rowCount ();i++){
+        //第0列是姓名，第1列是病历，第2列是图片
+        index = model_d->index(i, 0);
+        if(model_d->data (index).toString () == name){
+            //找到那个人的病历的index，更改
+            index = model_d->index (i,1);
+            break;
+        }
+    }
+    //找到那个人的病历，更改
+    qDebug() <<"原病历："<< model_d->data (index).toString ();
+    model_d->setData (index,var);
+    model_d->submitAll ();
+}
+void MainWindow::on_basicTableView_clicked(const QModelIndex& index) { onTableSelectChange(1); }
+
+void MainWindow::on_tabWidget_tabBarClicked(int index) {
+    //填写病历
+    if (index == 1) {
+        QModelIndex index;
+        for (int i = 0; i < model_d->rowCount(); i++) {
+            //逐行按照名字查找
+            index = model_d->index(i, 0);
+            QString current_name = model_d->data(index).toString();
+            if (current_name.compare(ui->nameLabel->text()) == 0) {
+                index = model_d->index(i, 1);
+                break;
+            }
+        }
+        ui->caseTextEdit->setText(model_d->data(index).toString());
+        ui->caseTextEdit->setFont(QFont("楷体", 12));
+    }
+}
+void MainWindow::onTableSelectChange(int row) {
+    int r = 1;  //默认显示第一行
+    //获取当前索引
+    if (row != 0)
+        r = ui->basicTableView->currentIndex().row();
+    QModelIndex index;
+    //姓名列
+    index = model->index(r, 1);
+    ui->nameLabel->setText(model->data(index).toString());
+    //性别 列
+    index = model->index(r, 2);
+    QString sex = model->data(index).toString();
+    ui->label_sex->setText(sex);
+    //出生日期
+    index = model->index(r, 4);
+    QDate date;
+    int now = date.currentDate().year();
+    int birth = model->data(index).toDate().year();
+    ui->label_age->setText(QString::number (now-birth));  //计算年龄
+    //民族
+    index = model->index(r, 3);
+    QString ethnic = model->data(index).toString();
+    ui->label_ethic->setText(ethnic);
+    //医保卡号
+    index = model->index(r, 0);
+    QString ssn = model->data(index).toString();
+    ui->ssnLineEdit->setText(ssn);
+    showUserPhoto();
+    //病历内容也要更改
+    on_tabWidget_tabBarClicked(1);
+}
+
+void MainWindow::showUserPhoto() {
+    QPixmap photo;
+    QModelIndex index;
+    for (int i = 0; i < model_d->rowCount(); i++) {
+        //姓名那一列
+        index = model_d->index(i, 0);
+        QString current_name = model_d->data(index).toString();
+        if (current_name.compare(ui->nameLabel->text()) == 0) {
+            //头像那一列
+            index = model_d->index(i, 2);
+            break;
+        }
+    }
+    photo.loadFromData(model_d->data(index).toByteArray(), "JPG");
+    ui->photoLabel->setPixmap(photo);
 }

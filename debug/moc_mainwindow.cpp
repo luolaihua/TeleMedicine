@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[21];
-    char stringdata0[345];
+    QByteArrayData data[26];
+    char stringdata0[426];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -52,7 +52,12 @@ QT_MOC_LITERAL(16, 276, 17), // "slot_guassianBlur"
 QT_MOC_LITERAL(17, 294, 15), // "slot_bilateBlur"
 QT_MOC_LITERAL(18, 310, 14), // "slot_threshold"
 QT_MOC_LITERAL(19, 325, 4), // "type"
-QT_MOC_LITERAL(20, 330, 14) // "slot_cellCount"
+QT_MOC_LITERAL(20, 330, 14), // "slot_cellCount"
+QT_MOC_LITERAL(21, 345, 25), // "on_treeWidget_itemClicked"
+QT_MOC_LITERAL(22, 371, 16), // "QTreeWidgetItem*"
+QT_MOC_LITERAL(23, 388, 4), // "item"
+QT_MOC_LITERAL(24, 393, 6), // "column"
+QT_MOC_LITERAL(25, 400, 25) // "on_saveHistoryBtn_clicked"
 
     },
     "MainWindow\0on_basicTableView_clicked\0"
@@ -64,7 +69,9 @@ QT_MOC_LITERAL(20, 330, 14) // "slot_cellCount"
     "on_verticalSlider_sliderMoved\0"
     "slot_img2Gray\0slot_guassianBlur\0"
     "slot_bilateBlur\0slot_threshold\0type\0"
-    "slot_cellCount"
+    "slot_cellCount\0on_treeWidget_itemClicked\0"
+    "QTreeWidgetItem*\0item\0column\0"
+    "on_saveHistoryBtn_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -74,7 +81,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      14,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -82,20 +89,22 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   84,    2, 0x08 /* Private */,
-       5,    1,   87,    2, 0x08 /* Private */,
-       6,    0,   90,    2, 0x08 /* Private */,
-       7,    0,   91,    2, 0x08 /* Private */,
-       8,    0,   92,    2, 0x08 /* Private */,
-       9,    1,   93,    2, 0x08 /* Private */,
-      11,    1,   96,    2, 0x08 /* Private */,
-      13,    1,   99,    2, 0x08 /* Private */,
-      14,    1,  102,    2, 0x08 /* Private */,
-      15,    0,  105,    2, 0x08 /* Private */,
-      16,    0,  106,    2, 0x08 /* Private */,
-      17,    0,  107,    2, 0x08 /* Private */,
-      18,    1,  108,    2, 0x08 /* Private */,
-      20,    0,  111,    2, 0x08 /* Private */,
+       1,    1,   94,    2, 0x08 /* Private */,
+       5,    1,   97,    2, 0x08 /* Private */,
+       6,    0,  100,    2, 0x08 /* Private */,
+       7,    0,  101,    2, 0x08 /* Private */,
+       8,    0,  102,    2, 0x08 /* Private */,
+       9,    1,  103,    2, 0x08 /* Private */,
+      11,    1,  106,    2, 0x08 /* Private */,
+      13,    1,  109,    2, 0x08 /* Private */,
+      14,    1,  112,    2, 0x08 /* Private */,
+      15,    0,  115,    2, 0x08 /* Private */,
+      16,    0,  116,    2, 0x08 /* Private */,
+      17,    0,  117,    2, 0x08 /* Private */,
+      18,    1,  118,    2, 0x08 /* Private */,
+      20,    0,  121,    2, 0x08 /* Private */,
+      21,    2,  122,    2, 0x08 /* Private */,
+      25,    0,  127,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -111,6 +120,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,   19,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 22, QMetaType::Int,   23,   24,
     QMetaType::Void,
 
        0        // eod
@@ -136,6 +147,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 11: _t->slot_bilateBlur(); break;
         case 12: _t->slot_threshold((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 13: _t->slot_cellCount(); break;
+        case 14: _t->on_treeWidget_itemClicked((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 15: _t->on_saveHistoryBtn_clicked(); break;
         default: ;
         }
     }
@@ -170,13 +183,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 16;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 16)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 14;
+        _id -= 16;
     }
     return _id;
 }
