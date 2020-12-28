@@ -67,7 +67,7 @@ public:
     QLabel *photoLabel;
     QLineEdit *ssnLineEdit;
     QLabel *nameLabel;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QGridLayout *gridLayout;
     QLabel *label_7;
     QLabel *label_sex;
@@ -76,11 +76,11 @@ public:
     QLabel *label_5;
     QLabel *label_ethic;
     QWidget *tab_2;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout;
     QTextEdit *caseTextEdit;
     QPushButton *saveHistoryBtn;
-    QWidget *layoutWidget;
+    QWidget *layoutWidget2;
     QHBoxLayout *horizontalLayout_2;
     QTimeEdit *timeEdit;
     QHBoxLayout *horizontalLayout;
@@ -245,19 +245,19 @@ public:
         font3.setPointSize(14);
         nameLabel->setFont(font3);
         nameLabel->setAlignment(Qt::AlignCenter);
-        widget = new QWidget(tab);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(10, 60, 91, 131));
-        gridLayout = new QGridLayout(widget);
+        layoutWidget = new QWidget(tab);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 60, 91, 131));
+        gridLayout = new QGridLayout(layoutWidget);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        label_7 = new QLabel(widget);
+        label_7 = new QLabel(layoutWidget);
         label_7->setObjectName(QString::fromUtf8("label_7"));
         label_7->setFont(font2);
 
         gridLayout->addWidget(label_7, 0, 0, 1, 1);
 
-        label_sex = new QLabel(widget);
+        label_sex = new QLabel(layoutWidget);
         label_sex->setObjectName(QString::fromUtf8("label_sex"));
         label_sex->setFrameShape(QFrame::NoFrame);
         label_sex->setFrameShadow(QFrame::Raised);
@@ -265,13 +265,13 @@ public:
 
         gridLayout->addWidget(label_sex, 0, 1, 1, 1);
 
-        label_4 = new QLabel(widget);
+        label_4 = new QLabel(layoutWidget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setFont(font2);
 
         gridLayout->addWidget(label_4, 1, 0, 1, 1);
 
-        label_age = new QLabel(widget);
+        label_age = new QLabel(layoutWidget);
         label_age->setObjectName(QString::fromUtf8("label_age"));
         label_age->setFrameShape(QFrame::NoFrame);
         label_age->setFrameShadow(QFrame::Raised);
@@ -279,13 +279,13 @@ public:
 
         gridLayout->addWidget(label_age, 1, 1, 1, 1);
 
-        label_5 = new QLabel(widget);
+        label_5 = new QLabel(layoutWidget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setFont(font2);
 
         gridLayout->addWidget(label_5, 2, 0, 1, 1);
 
-        label_ethic = new QLabel(widget);
+        label_ethic = new QLabel(layoutWidget);
         label_ethic->setObjectName(QString::fromUtf8("label_ethic"));
         label_ethic->setFrameShape(QFrame::NoFrame);
         label_ethic->setFrameShadow(QFrame::Raised);
@@ -296,37 +296,37 @@ public:
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
-        widget1 = new QWidget(tab_2);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(0, 0, 261, 291));
-        verticalLayout = new QVBoxLayout(widget1);
+        layoutWidget1 = new QWidget(tab_2);
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(0, 0, 261, 291));
+        verticalLayout = new QVBoxLayout(layoutWidget1);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        caseTextEdit = new QTextEdit(widget1);
+        caseTextEdit = new QTextEdit(layoutWidget1);
         caseTextEdit->setObjectName(QString::fromUtf8("caseTextEdit"));
 
         verticalLayout->addWidget(caseTextEdit);
 
-        saveHistoryBtn = new QPushButton(widget1);
+        saveHistoryBtn = new QPushButton(layoutWidget1);
         saveHistoryBtn->setObjectName(QString::fromUtf8("saveHistoryBtn"));
 
         verticalLayout->addWidget(saveHistoryBtn);
 
         tabWidget->addTab(tab_2, QString());
-        layoutWidget = new QWidget(centralwidget);
-        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(780, 60, 254, 27));
-        horizontalLayout_2 = new QHBoxLayout(layoutWidget);
+        layoutWidget2 = new QWidget(centralwidget);
+        layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(780, 60, 254, 27));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget2);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        timeEdit = new QTimeEdit(layoutWidget);
+        timeEdit = new QTimeEdit(layoutWidget2);
         timeEdit->setObjectName(QString::fromUtf8("timeEdit"));
 
         horizontalLayout_2->addWidget(timeEdit);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        yearLcdNumber = new QLCDNumber(layoutWidget);
+        yearLcdNumber = new QLCDNumber(layoutWidget2);
         yearLcdNumber->setObjectName(QString::fromUtf8("yearLcdNumber"));
         yearLcdNumber->setDigitCount(4);
         yearLcdNumber->setSegmentStyle(QLCDNumber::Filled);
@@ -335,14 +335,14 @@ public:
 
         horizontalLayout->addWidget(yearLcdNumber);
 
-        monthLcdNumber = new QLCDNumber(layoutWidget);
+        monthLcdNumber = new QLCDNumber(layoutWidget2);
         monthLcdNumber->setObjectName(QString::fromUtf8("monthLcdNumber"));
         monthLcdNumber->setDigitCount(2);
         monthLcdNumber->setProperty("value", QVariant(2.000000000000000));
 
         horizontalLayout->addWidget(monthLcdNumber);
 
-        dayLcdNumber = new QLCDNumber(layoutWidget);
+        dayLcdNumber = new QLCDNumber(layoutWidget2);
         dayLcdNumber->setObjectName(QString::fromUtf8("dayLcdNumber"));
         dayLcdNumber->setDigitCount(2);
         dayLcdNumber->setProperty("intValue", QVariant(25));
@@ -381,7 +381,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1110, 25));
+        menubar->setGeometry(QRect(0, 0, 1110, 22));
         menu = new QMenu(menubar);
         menu->setObjectName(QString::fromUtf8("menu"));
         menuCT = new QMenu(menubar);
@@ -424,7 +424,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -434,6 +434,9 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         actionStart->setText(QCoreApplication::translate("MainWindow", "\345\274\200\345\247\213\350\257\212\346\226\255", nullptr));
+#if QT_CONFIG(shortcut)
+        actionStart->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+R", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionparamSet->setText(QCoreApplication::translate("MainWindow", "\345\217\202\346\225\260\350\256\276\347\275\256", nullptr));
         actionresetCT->setText(QCoreApplication::translate("MainWindow", "\351\207\215\347\275\256CT\347\233\270\347\211\207", nullptr));
         actionlight->setText(QCoreApplication::translate("MainWindow", "\345\257\271\346\257\224\345\272\246\345\222\214\344\272\256\345\272\246", nullptr));
@@ -442,6 +445,9 @@ public:
         actionguassainBlur->setText(QCoreApplication::translate("MainWindow", "\351\253\230\346\226\257\346\273\244\346\263\242", nullptr));
         actionbitlateBlur->setText(QCoreApplication::translate("MainWindow", "\345\217\214\350\276\271\346\273\244\346\263\242", nullptr));
         actionreadCT->setText(QCoreApplication::translate("MainWindow", " \350\257\273\345\217\226 CT", nullptr));
+#if QT_CONFIG(shortcut)
+        actionreadCT->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+O", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionsaveCT->setText(QCoreApplication::translate("MainWindow", "\345\260\206\345\275\223\345\211\215 CT \345\217\246\345\255\230\344\270\272", nullptr));
         actionexit->setText(QCoreApplication::translate("MainWindow", " \351\200\200\345\207\272\347\250\213\345\272\217", nullptr));
         action0->setText(QCoreApplication::translate("MainWindow", "\344\272\214\350\277\233\345\210\266\351\230\210\345\200\274", nullptr));
@@ -516,11 +522,11 @@ public:
         photoLabel->setText(QCoreApplication::translate("MainWindow", "\346\232\202\346\227\240\347\205\247\347\211\207", nullptr));
         nameLabel->setText(QCoreApplication::translate("MainWindow", "\346\202\243\350\200\205\345\220\215", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "\346\200\247\345\210\253\357\274\232", nullptr));
-        label_sex->setText(QCoreApplication::translate("MainWindow", "\347\224\267", nullptr));
+        label_sex->setText(QString());
         label_4->setText(QCoreApplication::translate("MainWindow", "\345\271\264\351\276\204\357\274\232", nullptr));
-        label_age->setText(QCoreApplication::translate("MainWindow", "21", nullptr));
+        label_age->setText(QString());
         label_5->setText(QCoreApplication::translate("MainWindow", "\346\260\221\346\227\217\357\274\232", nullptr));
-        label_ethic->setText(QCoreApplication::translate("MainWindow", "\346\261\211", nullptr));
+        label_ethic->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "\344\277\241\346\201\257", nullptr));
         caseTextEdit->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
