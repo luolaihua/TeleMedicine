@@ -225,34 +225,6 @@
      </item>
     </item>
    </widget>
-   <widget class="QLabel" name="CT_Img_Label">
-    <property name="geometry">
-     <rect>
-      <x>291</x>
-      <y>91</y>
-      <width>754</width>
-      <height>504</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Sunken</enum>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="res.qrc">:/CT.jpg</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
@@ -370,7 +342,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -401,7 +373,7 @@
           <enum>QFrame::Raised</enum>
          </property>
          <property name="text">
-          <string>男</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -429,7 +401,7 @@
           <enum>QFrame::Raised</enum>
          </property>
          <property name="text">
-          <string>21</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -457,7 +429,7 @@
           <enum>QFrame::Raised</enum>
          </property>
          <property name="text">
-          <string>汉</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -471,7 +443,7 @@
      <attribute name="title">
       <string>病历</string>
      </attribute>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -651,6 +623,25 @@ p, li { white-space: pre-wrap; }
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="CT_Img_Label">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>100</y>
+      <width>731</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="res.qrc">:/CT.jpg</pixmap>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -716,6 +707,9 @@ p, li { white-space: pre-wrap; }
    <property name="text">
     <string>开始诊断</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
   </action>
   <action name="actionparamSet">
    <property name="text">
@@ -755,6 +749,9 @@ p, li { white-space: pre-wrap; }
   <action name="actionreadCT">
    <property name="text">
     <string> 读取 CT</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionsaveCT">

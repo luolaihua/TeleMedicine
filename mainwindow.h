@@ -45,9 +45,9 @@ class MainWindow : public QMainWindow {
     void ctImgPro_scale(float angle, float scale);//缩放
     void updateTime();//更新时间
     void ctImgBlur(QString type, int value);//滤波功能
-
+    void connectAll();
   protected:
-    bool eventFilter(QObject* obj, QEvent* event);
+    //bool eventFilter(QObject* obj, QEvent* event);
 
   private slots:
     void on_basicTableView_clicked(const QModelIndex& index);
@@ -111,7 +111,7 @@ static bool createMySqlConn() {
                               QMessageBox::Cancel);
         return false;
     }
-    // QMessageBox::information (0,QObject::tr("后台数据库已启动、正在运行……"),"数据库连接成功，即将启动程序。");
+    QMessageBox::information (0,QObject::tr("后台数据库已启动、正在运行……"),"数据库连接成功，即将启动程序。");
 
 /*
     //创建SQL查询

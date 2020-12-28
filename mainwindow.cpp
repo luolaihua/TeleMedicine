@@ -3,7 +3,7 @@
 #include <QBuffer>
 #include <QFileDialog>
 #include <QMouseEvent>
-
+#include<QDebug>
 #include "ui_mainwindow.h"
 MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent), ui(new Ui::MainWindow)
@@ -19,6 +19,9 @@ MainWindow::~MainWindow() { delete ui; }
 
 void MainWindow::initData()
 {
+    //参数输入窗口
+    inputDlg = new InputDialog(this);
+    cellDlg = new cellSettingDialog(this);
     //基本视图信息；
     model = new QSqlTableModel(this);
     model->setTable("basic_inf");
@@ -36,31 +39,79 @@ void MainWindow::initData()
  * @brief 初始化窗体中要显示的CT相片及系统当前日期时间
  */
 void MainWindow::initMainWindow() {
-    QString ctImgPath = "CT.jpg";
-    Mat ctImg = imread(ctImgPath.toLatin1().data());
+    //QString ctImgPath = ":/Tumor.jpg";
+    //Mat ctImg = imread(ctImgPath.toLatin1().data());
+    Mat ctImg;
+    QFile file(":/CT.jpg");
+    QByteArray ba;
+    if(!file.open(QFile::ReadOnly))
+    {
+        qDebug("读取失败");
+    }else{
+        ba = file.readAll();
+        ctImg = imdecode(vector<char>(ba.begin(), ba.end()), 1);
+    }
+    if(ctImg.empty ()){
+        qDebug("图像为空");
+    }
     cvtColor(ctImg, ctImg, COLOR_BGR2RGB);  //转换色彩空间，opencv中的是BGR，Qt中的是RGB
     myCtImg = ctImg;
     myProCtImg = ctImg;
     Mat ctGrayImg;
     cvtColor(ctImg, ctGrayImg, COLOR_RGB2GRAY);
     myCtGrayImg = ctGrayImg;
+
     myCtQImage = QImage(ctImg.data, ctImg.cols, ctImg.rows, QImage::Format_RGB888);
-    ctImgShow();
+
+    //ui->Img_Label->setText ("What's going wrong?");
+    //ctImgShow();
     //更新时间
     updateTime();
+    //连接所有信号槽
+    connectAll ();
+    //给CT照片的label安装事件过滤器
+    //ui->CT_Img_Label->installEventFilter(this);
 
+
+}
+/**
+ * @brief 过滤出CT_Img_Label的双击事件
+ * @param watched 被安装过滤器的对象，可能不止一个
+ * @param event 处理它的事件
+ * @return
+ */
+//处理步骤：先找到相应的对象，在找到相应的事件
+//bool MainWindow::eventFilter(QObject* watched, QEvent* event) {
+//    //return QMainWindow::eventFilter(watched, event);
+//    //过滤出CT_Img_Label对象
+//    if (watched == ui->CT_Img_Label) {
+//        //判断是否是双击事件
+//        if (event->type() == QEvent::MouseButtonDblClick) {
+//            //可以将QEvent转成QMouseEvent
+//            // QMouseEvent *mouseE = static_cast<QMouseEvent*>(event);
+//            qDebug() << "MouseButtonDblClick";
+//            imshow("CT", myCtImg);
+//            return true;
+//        }else if(event->type() == QEvent::MouseButtonPress){
+//            //可以将QEvent转成QMouseEvent
+//            QMouseEvent *mouseE = static_cast<QMouseEvent*>(event);
+//            qDebug()<< "test:"<<mouseE->pos ();
+//        }
+//    } else {
+//        //将其他事件交给父类
+//        return QMainWindow::eventFilter(watched, event);
+//    }
+//}
+
+void MainWindow::ctImgShow() {
+    // QImage img(":/CT.jpg");
+    ui->CT_Img_Label->setPixmap(QPixmap::fromImage(myCtQImage.scaled(ui->CT_Img_Label->size(), Qt::KeepAspectRatio)));
+}
+void MainWindow::connectAll(){
     //绑定消息槽函数
     connect(ui->actionStart, &QAction::triggered, this, &MainWindow::ctImgProc);
-
-    //参数输入窗口
-    inputDlg = new InputDialog(this);
-    cellDlg = new cellSettingDialog(this);
     connect(ui->actionparamSet, &QAction::triggered, this, &MainWindow::slot_getParams);
     connect(ui->actionresetCT, &QAction::triggered, this, &MainWindow::slot_resetCT);
-
-    //给CT照片的label安装事件过滤器
-    ui->CT_Img_Label->installEventFilter(this);
-
     //旋转缩放，对比度亮度调节
     ui->label_horizon->hide();
     ui->label_vertical->hide();
@@ -110,8 +161,8 @@ void MainWindow::initMainWindow() {
     connect(ui->actioncellSetting, &QAction::triggered, this, [=]() {
         cellDlg->show();
     });
-
 }
+
 void MainWindow::updateTime() {
     //时间日期更新
     QDate date = QDate::currentDate();
@@ -191,9 +242,7 @@ void MainWindow::ctImgProc() {
     // QMessageBox::information (this,tr("完毕"),tr("子宫内壁见椭球形阴影，疑似子宫肌瘤"));
 }
 
-void MainWindow::ctImgShow() {
-    ui->CT_Img_Label->setPixmap(QPixmap::fromImage(myCtQImage.scaled(ui->CT_Img_Label->size(), Qt::KeepAspectRatio)));
-}
+
 /**
  * @brief 将图片另存
  */
@@ -276,29 +325,6 @@ void MainWindow::ctImgPro_scale(float angle, float scale) {
     ctImgShow();
 }
 
-/**
- * @brief 过滤出CT_Img_Label的双击事件
- * @param watched 被安装过滤器的对象，可能不止一个
- * @param event 处理它的事件
- * @return
- */
-//处理步骤：先找到相应的对象，在找到相应的事件
-bool MainWindow::eventFilter(QObject* watched, QEvent* event) {
-    //过滤出CT_Img_Label对象
-    if (watched == ui->CT_Img_Label) {
-        //判断是否是双击事件
-        if (event->type() == QEvent::MouseButtonDblClick) {
-            //可以将QEvent转成QMouseEvent
-            // QMouseEvent *mouseE = static_cast<QMouseEvent*>(event);
-            // qDebug() << "MouseButtonDblClick";
-            imshow("CT", myCtImg);
-            return true;
-        }
-    } else {
-        //将其他事件交给父类
-        return QMainWindow::eventFilter(watched, event);
-    }
-}
 
 
 void MainWindow::onTimeOut() {
