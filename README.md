@@ -6,9 +6,11 @@
 - 如果出现找不到libopencv_XXX450.dll的错误，本项目所有依赖的dll都放在TeleMedicine/debug/目录下，需要将所有dll拷贝到exe文件所在目录：
 
 ![](https://github.com/luolaihua/TeleMedicine/blob/Demo2/introduction/MinGW.png)
-![](https://github.com/luolaihua/TeleMedicine/blob/Demo2/introduction/error.jpg)
-![](https://github.com/luolaihua/TeleMedicine/blob/Demo2/introduction/qt_creator.jpg)
-![](https://github.com/luolaihua/TeleMedicine/blob/Demo2/introduction/qt_vertion.jpg)
+![](https://github.com/luolaihua/TeleMedicine/blob/Demo2/introduction/error.png)
+![](https://github.com/luolaihua/TeleMedicine/blob/Demo2/introduction/qt_creator.png)
+![](https://github.com/luolaihua/TeleMedicine/blob/Demo2/introduction/qt_version.png)
+![](https://github.com/luolaihua/TeleMedicine/blob/Demo2/introduction/dll.png)
+
 
 # TeleMedicine
 ## 校医院远程诊断系统
