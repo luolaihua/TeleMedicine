@@ -5,10 +5,10 @@
 - 为了使读者更好的在自己的环境上跑通本项目，这里提供我的Qt以及Qt Creator 版本：
 - 如果出现找不到libopencv_XXX450.dll的错误，本项目所有依赖的dll都放在TeleMedicine/debug/目录下，需要将所有dll拷贝到exe文件所在目录：
 
-![](https://github.com/luolaihua/TeleMedicine/blob/master/introduction/MinGW.jpg)
-![](https://github.com/luolaihua/TeleMedicine/blob/master/introduction/error.jpg)
-![](https://github.com/luolaihua/TeleMedicine/blob/master/introduction/qt_creator.jpg)
-![](https://github.com/luolaihua/TeleMedicine/blob/master/introduction/qt_vertion.jpg)
+![](https://github.com/luolaihua/TeleMedicine/tree/Demo2/introduction/MinGW.jpg)
+![](https://github.com/luolaihua/TeleMedicine/tree/Demo2/introduction/error.jpg)
+![](https://github.com/luolaihua/TeleMedicine/tree/Demo2/introduction/qt_creator.jpg)
+![](https://github.com/luolaihua/TeleMedicine/tree/Demo2/introduction/qt_vertion.jpg)
 
 # TeleMedicine
 ## 校医院远程诊断系统
