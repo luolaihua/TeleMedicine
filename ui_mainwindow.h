@@ -373,7 +373,7 @@ public:
         CT_Img_Label = new QLabel(centralwidget);
         CT_Img_Label->setObjectName(QString::fromUtf8("CT_Img_Label"));
         CT_Img_Label->setGeometry(QRect(300, 100, 731, 491));
-        CT_Img_Label->setFrameShape(QFrame::Box);
+        CT_Img_Label->setFrameShape(QFrame::NoFrame);
         CT_Img_Label->setPixmap(QPixmap(QString::fromUtf8(":/CT.jpg")));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -421,7 +421,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -455,7 +455,7 @@ public:
         actioncellSetting->setText(QCoreApplication::translate("MainWindow", "\350\256\241\346\225\260\350\256\276\347\275\256", nullptr));
         actionimportCell->setText(QCoreApplication::translate("MainWindow", "\345\257\274\345\205\245\347\273\206\350\203\236\345\233\276\347\211\207", nullptr));
         actionstartCount->setText(QCoreApplication::translate("MainWindow", "\345\274\200\345\247\213\350\256\241\346\225\260", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "\345\215\227\347\220\206\345\267\245\346\240\241\345\214\273\351\231\242\350\277\234\347\250\213\350\257\212\346\226\255\347\263\273\347\273\237", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "\346\240\241\345\214\273\351\231\242\350\277\234\347\250\213\350\257\212\346\226\255\347\263\273\347\273\237", nullptr));
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
         ___qtreewidgetitem->setText(0, QCoreApplication::translate("MainWindow", "\346\240\241\345\214\273\351\231\242", nullptr));
 
@@ -515,8 +515,9 @@ public:
 
         label_2->setText(QCoreApplication::translate("MainWindow", "CT\345\275\261\345\203\217", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "\345\214\273\344\277\235\345\215\241\347\274\226\345\217\267\357\274\232", nullptr));
-        photoLabel->setText(QCoreApplication::translate("MainWindow", "\346\232\202\346\227\240\347\205\247\347\211\207", nullptr));
-        nameLabel->setText(QCoreApplication::translate("MainWindow", "\346\202\243\350\200\205\345\220\215", nullptr));
+        photoLabel->setText(QString());
+        ssnLineEdit->setText(QString());
+        nameLabel->setText(QString());
         label_7->setText(QCoreApplication::translate("MainWindow", "\346\200\247\345\210\253\357\274\232", nullptr));
         label_sex->setText(QString());
         label_4->setText(QCoreApplication::translate("MainWindow", "\345\271\264\351\276\204\357\274\232", nullptr));

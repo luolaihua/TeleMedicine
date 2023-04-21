@@ -14,11 +14,11 @@ class cellSettingDialog : public QDialog
 public:
     explicit cellSettingDialog(QWidget *parent = nullptr);
     ~cellSettingDialog();
-    int get_blur_ksize();
-    int get_canny_up();
-    int get_canny_down();
-    int get_erode_size();
-    int get_dilate_size();
+    int get_blur_ksize();//获取滤波参数
+    int get_canny_up();//获取边缘检测参数
+    int get_canny_down();//获取下边缘检测参数
+    int get_erode_size();//获取腐蚀强度
+    int get_dilate_size();//获取膨胀强度
 
 private slots:
     void on_buttonBox_2_accepted();

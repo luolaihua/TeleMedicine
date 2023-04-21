@@ -42,7 +42,7 @@
      </font>
     </property>
     <property name="text">
-     <string>南理工校医院远程诊断系统</string>
+     <string>校医院远程诊断系统</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -253,7 +253,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -290,7 +290,7 @@
        <enum>QFrame::Panel</enum>
       </property>
       <property name="text">
-       <string>暂无照片</string>
+       <string/>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -312,6 +312,9 @@
        <font>
         <pointsize>12</pointsize>
        </font>
+      </property>
+      <property name="text">
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -336,7 +339,7 @@
        </font>
       </property>
       <property name="text">
-       <string>患者名</string>
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -633,13 +636,13 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Box</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="res.qrc">:/CT.jpg</pixmap>
+     <pixmap>:/CT.jpg</pixmap>
     </property>
    </widget>
   </widget>
@@ -649,7 +652,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1110</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -805,8 +808,6 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
  </widget>
- <resources>
-  <include location="res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

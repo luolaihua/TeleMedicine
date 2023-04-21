@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>CT.jpg</file>
         <file>Tumor.jpg</file>
+        <file>avatar.jpg</file>
+        <file>b.jpg</file>
     </qresource>
 </RCC>

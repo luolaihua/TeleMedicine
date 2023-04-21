@@ -13,6 +13,7 @@ class InputDialog : public QDialog {
   public:
     explicit InputDialog(QWidget* parent = nullptr);
     ~InputDialog();
+    //霍夫圆检测法参数获取函数
     QStringList getData();
     double get_hough_dp();
     double get_hough_minDist();

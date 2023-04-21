@@ -24,8 +24,8 @@ FORMS += \
     inputdialog.ui \
     mainwindow.ui
 
-INCLUDEPATH += D:\opencv_4.5.0-build\install\include
-LIBS += D:\opencv_4.5.0-build\install\x64\mingw\bin\libopencv_*.dll
+INCLUDEPATH += E:\QtProject\OpenCV\install\include
+LIBS += E:\QtProject\OpenCV\install\x64\mingw\bin\libopencv_*.dll
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

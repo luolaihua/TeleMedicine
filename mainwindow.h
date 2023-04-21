@@ -45,34 +45,28 @@ class MainWindow : public QMainWindow {
     void ctImgPro_scale(float angle, float scale);//缩放
     void updateTime();//更新时间
     void ctImgBlur(QString type, int value);//滤波功能
-    void connectAll();
+    void connectAll();//连接所有信号槽
   protected:
     //bool eventFilter(QObject* obj, QEvent* event);
 
   private slots:
     void on_basicTableView_clicked(const QModelIndex& index);
 
-    void on_tabWidget_tabBarClicked(int index);
-
-    void onTimeOut();
-    void slot_getParams();
-    void slot_resetCT();
-    void on_horizontalSlider_valueChanged(int value);
-
-    void on_horizontalSlider_sliderMoved(int position);
-
-    void on_verticalSlider_valueChanged(int value);
-
-    void on_verticalSlider_sliderMoved(int position);
-
-    void slot_img2Gray();
-    void slot_guassianBlur();
-    void slot_bilateBlur();
-    void slot_threshold(int type);
-    void slot_cellCount();
+    void on_tabWidget_tabBarClicked(int index);//工具栏点击反馈函数
+    void onTimeOut();//计时函数
+    void slot_getParams();//获取参数函数
+    void slot_resetCT();//重置CT相片函数
+    void on_horizontalSlider_valueChanged(int value);//水平滑动条函数1
+    void on_horizontalSlider_sliderMoved(int position);//水平滑动条函数2
+    void on_verticalSlider_valueChanged(int value);//垂直滑动条函数1
+    void on_verticalSlider_sliderMoved(int position);//垂直滑动条函数2
+    void slot_img2Gray();//灰度化函数
+    void slot_guassianBlur();//高斯滤波函数
+    void slot_bilateBlur();//双边滤波函数
+    void slot_threshold(int type);//阈值化函数
+    void slot_cellCount();//细胞计数函数
     void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
-
-    void on_saveHistoryBtn_clicked();
+    void on_saveHistoryBtn_clicked();//保存CT相片函数
 
 private:
     Ui::MainWindow* ui;
